@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { ResultadosPage } from '../resultados/resultados'
+
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'
@@ -19,8 +21,7 @@ export class HomePage {
 	}
 
 	getFilterData() {
-		console.log('data', this.filtrosData);
-		console.log( 'cat', this.categoria );
+		this.navCtrl.setRoot( ResultadosPage );
 	}
 
 }
