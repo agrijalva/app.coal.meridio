@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the CategoriasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -20,6 +14,10 @@ export class CategoriasPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoriasPage');
+  }
+
+  goFiltro(){
+    this.navCtrl.setRoot( HomePage );
   }
 
 }
