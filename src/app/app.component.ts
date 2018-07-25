@@ -15,7 +15,7 @@ import { ArticuloPage } from '../pages/articulo/articulo';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ArticuloPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
