@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { CategoriasPage } from '../pages/categorias/categorias';
 import { ResultadosPage } from '../pages/resultados/resultados';
+import { ArticuloPage } from '../pages/articulo/articulo';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +16,7 @@ import { ResultadosPage } from '../pages/resultados/resultados';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ResultadosPage;
+  rootPage: any = ArticuloPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -28,6 +29,7 @@ export class MyApp {
       { title: 'Categorias', component: CategoriasPage },
       { title: 'Resultados', component: ResultadosPage },
       { title: 'Filtros', component: HomePage },
+      { title: 'Artículo', component: ArticuloPage },
       { title: 'Mis sitios favoritos', component: ListPage },
       { title: 'Ayuda', component: LoginPage },
       { title: 'Cerra Sesion', component: LoginPage }
