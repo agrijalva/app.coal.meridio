@@ -1,6 +1,22 @@
 // http://ionicframework.com/docs/theming/
 
+.menu-inner .header .toolbar .toolbar-background{
+    background-color: #0033a0;
+}
 
+.menu-inner .header .toolbar .toolbar-content .title .toolbar-title{
+    color: #ffffff;
+    font-size: 14px;
+    padding-top: 2%;
+}
+
+.list .item .item-inner{
+    border-bottom: 0px solid #dedede;
+}
+
+.list{
+    padding-top: 15px;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
