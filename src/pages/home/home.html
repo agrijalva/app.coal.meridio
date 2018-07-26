@@ -1,18 +1,46 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+	<ion-navbar text-center>
+		<button class="burguerButton" ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<img class="logoCenter" src="../../assets/imgs/login/logo_meridio_header.png">
+	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+	<div padding>
+		<ion-icon class="filterIcon" ios="ios-funnel-outline" md="ios-funnel-outline"></ion-icon>
+		&nbsp;&nbsp;
+		<label class="filterIcon">Filtros</label>
+	</div>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+	<div class="divForm">
+		<form (ngSubmit)="getFilterData()">
+			<ion-item>
+				<ion-label>Categoria</ion-label>
+				<ion-select name="categoria" [(ngModel)]="categoria">
+					<ion-option *ngFor="let cat of categorias" value="{{cat.value}}">{{cat.nombre}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<br>
+			<br>
+			<ion-item>
+				<ion-input type="text" name="materia" [(ngModel)]="filtrosData.materia" placeholder="Materia"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input type="text" name="tema" [(ngModel)]="filtrosData.tema" placeholder="Tema"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input type="text" name="titulo" [(ngModel)]="filtrosData.titulo" placeholder="Titulo"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input type="text" name="palabraClave" [(ngModel)]="filtrosData.palabraClave" placeholder="Palabra Clave"></ion-input>
+			</ion-item>
+			<div padding style="width: 100%; height: 10px;">
+				<button padding ion-button class="submit-btn" full type="submit">
+					Buscar
+				</button>
+			</div>
+		</form>
+	</div>
 </ion-content>

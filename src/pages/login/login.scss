@@ -1,0 +1,60 @@
+page-login {
+	.login-content {
+		background-image: url(../../assets/imgs/login/fondo_01.jpg);
+
+		.logo-row {
+			padding-top: 15px;
+			padding-bottom: 50px;
+		};
+
+		.imgMeridio{
+			max-width: none;
+			width: 150px;
+		};
+
+		.login-box {
+			padding: 20px 20px 0px 20px;
+		};
+
+		ion-row {
+			align-items: center;
+			text-align: center;
+		};
+
+		.ionInput {
+			border-radius: 10px !important;
+			padding-left: 30px !important;
+			font-size: 0.9em;
+			margin-bottom: 7%;
+			border: 1px solid #ffffff;
+			border-bottom: 0px !important;
+			box-shadow: none !important;
+			height: 10px;
+			padding-left:10px !important;
+		};
+
+		.item-inner {
+			border-bottom-color: #ffffff !important;
+			box-shadow: none !important;
+		};
+
+		.submit-btn {
+			background: #0000ff;
+			border-radius: 10px !important;
+		};
+
+		.register-btn {
+			color: #ffffff;
+			font-size: 0.8em;
+		};
+
+		.fontlabel{
+			font-size: 17px;
+			font-family: 'Raleway-Regular';
+		};
+		
+		.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+			background-image: none;
+		};
+	};
+};
