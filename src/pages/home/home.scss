@@ -27,4 +27,13 @@ page-home {
         border-radius: 10px !important;
         padding: 0px 10px 0px 10px;
     };
+
+    ion-select {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        overflow: hidden;
+        max-width: none;
+    };
 };

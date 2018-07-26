@@ -17,7 +17,7 @@ import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ResultadosPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
