@@ -1,8 +1,8 @@
 <ion-content class="login-content" padding>
     <ion-row class="logo-row">
         <ion-col></ion-col>
-        <ion-col>
-            <img src="../../assets/imgs/login/logo_meridio.png" />
+        <ion-col text-center>
+            <img class="imgMeridio" src="../../assets/imgs/login/logo_meridio.png" />
         </ion-col>
         <ion-col></ion-col>
     </ion-row>
@@ -12,25 +12,33 @@
                 <ion-col>
                     <ion-list>
                         <ion-item class="ionInput">
-                            <ion-icon name="contact"></ion-icon>
-                            <ion-input type="text" placeholder="Usuario" name="usuario" [(ngModel)]="loginData.usuario"></ion-input>
+                            <ion-label class="fontlabel">
+                                <ion-icon ios="md-contact" md="md-contact"></ion-icon>
+                                &nbsp;Usuario
+                            </ion-label>
+                            <ion-input type="text" name="usuario" [(ngModel)]="loginData.usuario"></ion-input>
                         </ion-item>
 
                         <ion-item class="ionInput">
-                            <ion-input type="password" placeholder="Contraseña" name="pass" [(ngModel)]="loginData.pass"></ion-input>
+                            <ion-label class="fontlabel">
+                                <ion-icon ios="ios-lock" md="ios-lock"></ion-icon>
+                                &nbsp;Contraseña
+                            </ion-label>
+                            <ion-input type="password" name="pass" [(ngModel)]="loginData.pass"></ion-input>
                         </ion-item>
-
                         <button ion-button class="submit-btn" full type="submit">Iniciar Sesión</button>
                     </ion-list>
                 </ion-col>
             </ion-row>
         </form>
     </div>
-    <ion-row class="logo-row-down">
-        <ion-col></ion-col>
-        <ion-col>
-            <img src="../../assets/imgs/login/logo_blanco.png" />
-        </ion-col>
-        <ion-col></ion-col>
-    </ion-row>
+    <ion-footer>
+        <ion-row class="logo-row-down">
+            <ion-col></ion-col>
+            <ion-col>
+                <img src="../../assets/imgs/login/logo_blanco.png" />
+            </ion-col>
+            <ion-col></ion-col>
+        </ion-row>
+    </ion-footer>
 </ion-content>

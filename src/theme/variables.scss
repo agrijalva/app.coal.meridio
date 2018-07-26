@@ -6,6 +6,13 @@
 $font-path: "../assets/fonts";
 
 
+@font-face{
+  font-family: 'Raleway-Regular';
+  font-weight: normal;
+  font-style: normal; 
+  src: url('../assets/fonts/Raleway-Regular.ttf');
+}
+
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
