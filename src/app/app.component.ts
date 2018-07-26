@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { CategoriasPage } from '../pages/categorias/categorias';
-import { ArticuloPage } from '../pages/articulo/articulo';
 import { ConocenosPage } from '../pages/conocenos/conocenos';
 import { AyudaPage } from '../pages/ayuda/ayuda';
+import { ResultadosPage } from '../pages/resultados/resultados';
+import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +17,7 @@ import { AyudaPage } from '../pages/ayuda/ayuda';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ConocenosPage;
+  rootPage: any = ResultadosPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -29,7 +29,7 @@ export class MyApp {
       { title: 'Conócenos',             component: ConocenosPage },
       { title: 'Categorias',            component: CategoriasPage },
       { title: 'Filtros',               component: HomePage },
-      { title: 'Mis sitios favoritos',  component: ListPage },
+      { title: 'Mis sitios favoritos',  component: SitiosfavPage },
       { title: 'Ayuda',                 component: AyudaPage },
       { title: 'Cerra Sesion',          component: LoginPage }
     ];
