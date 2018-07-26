@@ -1,33 +1,21 @@
 page-categorias {
-    .header .toolbar .toolbar-background{
-        background-color: #0033a0;
-    }
-
-    .burguerButton{
-        color: #ffffff;
-    }
-
-    .logoCenter{
-        margin-left: -56px;
-    }
-
     .grid .row .col .searchbar-input{
         background-color:  #f5f5f0;  
         border: 1px solid #dedede;
         border-radius: 7px !important;
         padding-left: 35px;
-    }
+    };
     
     .filterIcon{
         padding-top: 15px; 
         font-size: 230%;
-    }
+    };
 
     //Cards
     ion-card {
         position: relative;
         text-align: left;
-      }
+    };
     
       .card-title {
         padding: 10px 5px; 
@@ -39,5 +27,5 @@ page-categorias {
         width: 100%;
         font-weight: bold;
         color: #fff;
-      }
-}
+    };
+};

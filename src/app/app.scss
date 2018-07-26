@@ -21,6 +21,18 @@
 .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
     background-image: none;
 }
+
+.header .toolbar .toolbar-background{
+    background-color: #0033a0;
+}
+
+.burguerButton{
+    color: #ffffff;
+}
+
+.logoCenter{
+    margin-left: -56px;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
