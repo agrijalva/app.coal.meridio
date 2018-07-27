@@ -12,11 +12,11 @@
 	<div class="divForm">
 		<ion-grid text-center>
 			<ion-row wrap>
-				<ion-col col-10>
+				<ion-col col-11>
 					<ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
 					</ion-searchbar>
 				</ion-col>
-				<ion-col col-2 >
+				<ion-col col-1>
 						<ion-icon class="filterIcon" ios="ios-funnel-outline" md="ios-funnel-outline" (click) ="goFiltro()"></ion-icon>
 				</ion-col>
 			</ion-row>

@@ -37,8 +37,7 @@ export class HomePage {
 	}
 
 	getFilterData() {
-		console.log( 'cat', this.categoria );
-		//this.navCtrl.setRoot( ResultadosPage );
+		this.navCtrl.push( ResultadosPage );
 	}
 
 }

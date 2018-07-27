@@ -17,7 +17,7 @@ export class CategoriasPage {
   }
 
   goFiltro(){
-    this.navCtrl.setRoot( HomePage );
+    this.navCtrl.push( HomePage );
   }
 
 }
