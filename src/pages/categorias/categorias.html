@@ -24,25 +24,9 @@
 	</div>
 
 	<div>
-		<ion-card>
-			<img src="../../assets/imgs/categorias/sov.jpg" />
-			<div class="card-title">IMAGENES SOVIETICAS</div>
+		<ion-card *ngFor="let cat of categorias">
+			<img src="{{cat.img}}" />
+			<div class="card-title">{{cat.title}}</div>
 		</ion-card>
-
-		<ion-card>
-			<img src="../../assets/imgs/categorias/anime.jpg" />
-			<div class="card-title">ANIME</div>
-		</ion-card>
-
-		<ion-card>
-			<img src="../../assets/imgs/categorias/caricaturas.jpg" />
-			<div class="card-title">CARICATURAS</div>
-		</ion-card>
-
-		<ion-card>
-			<img src="../../assets/imgs/categorias/chiche.jpg" />
-			<div class="card-title">HISTORIA</div>
-		</ion-card>
-
 	</div>
 </ion-content>

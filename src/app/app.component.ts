@@ -8,7 +8,6 @@ import { LoginPage } from '../pages/login/login';
 import { CategoriasPage } from '../pages/categorias/categorias';
 import { ConocenosPage } from '../pages/conocenos/conocenos';
 import { AyudaPage } from '../pages/ayuda/ayuda';
-import { ResultadosPage } from '../pages/resultados/resultados';
 import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 
 @Component({
@@ -17,7 +16,7 @@ import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
