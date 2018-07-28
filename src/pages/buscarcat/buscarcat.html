@@ -7,12 +7,16 @@
 	</ion-navbar>
 	<div class="divSubHeader">
 		<ion-toolbar>
-			<ion-title>{{subTitle}}</ion-title>
+			<ion-title text-center>{{subTitle}}</ion-title>
 		</ion-toolbar>
 	</div>
 </ion-header>
 
-
 <ion-content padding>
-
+	<ion-row wrap>
+		<ion-col col-12>
+			<ion-searchbar #busqueda [showCancelButton]="true" (keyup.enter)="search(q.busqueda)">
+			</ion-searchbar>
+		</ion-col>
+	</ion-row>
 </ion-content>

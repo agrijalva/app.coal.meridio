@@ -12,48 +12,48 @@
 		<label class="titleText">Resultados</label>
 	</div>
 
-	<ion-card *ngFor="let car of cards">
+	<ion-card *ngFor="let car of enlacesGet">
 		<ion-item>
 			<ion-avatar item-start>
 				<img src="{{car.icon}}">
 			</ion-avatar>
-			<p>{{car.link}}</p>
+			<p>{{car.URL}}</p>
 			<h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</ion-item>
 		<div class="paddingDiv">
-			<label class="labelTitle" (click)="goArticulo(car.link)"> {{car.title}} </label>
+			<label class="labelTitle" (click)="goArticulo(car.URL)"> {{car.tema}} </label>
 			<img src="{{car.image}}">
 		</div>
 		<ion-card-content>
-			<p>{{car.text}} </p>
+			<p>{{car.descripcion}} </p>
 			<ion-grid>
 				<ion-row>
 					<strong>
-						<small> Campo1: </small>
+						<small> Autor: &nbsp;</small>
 					</strong>
 					<label>
-						<small> Valor1</small>
+						<small> {{car.autor}}</small>
 					</label>
 				</ion-row>
 				<ion-row>
 					<strong>
-						<small> Campo2: </small>
+						<small> Fecha: &nbsp;</small>
 					</strong>
 					<label>
-						<small> Valor2</small>
+						<small> {{car.fecha.split('T')[0]}}</small>
 					</label>
 				</ion-row>
 				<ion-row>
 					<strong>
-						<small> Campo3: </small>
+						<small> Categoria: &nbsp;</small>
 					</strong>
 					<label>
-						<small> Valor3</small>
+						<small>{{ car.categoria }}</small>
 					</label>
 				</ion-row>
-				<ion-row>
+				<!-- <ion-row>
 					<strong>
-						<small> Campo4: </small>
+						<small> Campo4:&nbsp; </small>
 					</strong>
 					<label>
 						<small> Valor4 </small>
@@ -61,12 +61,12 @@
 				</ion-row>
 				<ion-row>
 					<strong>
-						<small> Campo5: </small>
+						<small> Campo5: &nbsp;</small>
 					</strong>
 					<label>
 						<small> Valor5</small>
 					</label>
-				</ion-row>
+				</ion-row> -->
 			</ion-grid>
 		</ion-card-content>
 		<ion-grid>
