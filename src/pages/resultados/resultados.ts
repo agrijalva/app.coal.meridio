@@ -1,25 +1,31 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the ResultadosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ArticuloPage } from '../articulo/articulo';
 
 @IonicPage()
 @Component({
-  selector: 'page-resultados',
-  templateUrl: 'resultados.html',
+	selector: 'page-resultados',
+	templateUrl: 'resultados.html',
 })
 export class ResultadosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	public enlacesGet: any;
+	
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ResultadosPage');
-  }
+	ionViewDidLoad() {
+		this.getEnlaces();
+	}
+
+	public goArticulo(link){
+		console.log( link );
+		this.navCtrl.push( ArticuloPage, {link: link} );
+	}
+
+	private getEnlaces(){
+		this.enlacesGet = this.navParams.get('enlaces');
+	}
 
 }

@@ -1,25 +1,20 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ArticuloPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
-  selector: 'page-articulo',
-  templateUrl: 'articulo.html',
+	selector: 'page-articulo',
+	templateUrl: 'articulo.html',
 })
 export class ArticuloPage {
+	private link: SafeResourceUrl = '';
+	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
+		this.link = this.sanitizer.bypassSecurityTrustResourceUrl(this.navParams.get('link'));
+	}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ArticuloPage');
-  }
+	ionViewDidLoad() {
+		console.log('ArticuloPage', this.link);
+	}
 
 }

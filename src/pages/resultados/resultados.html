@@ -12,241 +12,75 @@
 		<label class="titleText">Resultados</label>
 	</div>
 
-	<ion-card>
+	<ion-card *ngFor="let car of enlacesGet">
 		<ion-item>
 			<ion-avatar item-start>
-				<img src="https://www.google.com/s2/favicons?domain=www.youtube.com">
+				<img src="{{car.icon}}">
 			</ion-avatar>
-			<p>What is Lorem Ipsum?</p>
+			<p>{{car.URL}}</p>
 			<h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</ion-item>
 		<div class="paddingDiv">
-			<label class="labelTitle"> Lorem IpsumLorem IpsumLorem Ipsum </label>
-			<img src="../../assets/imgs/categorias/anime.jpg">
+			<label class="labelTitle" (click)="goArticulo(car.URL)"> {{car.tema}} </label>
+			<img src="{{car.image}}">
 		</div>
 		<ion-card-content>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus aliquam velit, et luctus orci sodales nec. Morbi
-				at libero sed ipsum condimentum congue. Mauris a sapien sit amet libero molestie posuere non non libero. Nullam orci
-				nulla, pretium id facilisis et, semper nec tortor. Fusce non auctor nulla. </p>
-			<ion-list>
-				<ion-item>
+			<p>{{car.descripcion}} </p>
+			<ion-grid>
+				<ion-row>
 					<strong>
-						<small> Campo1: </small>
+						<small> Autor: &nbsp;</small>
 					</strong>
 					<label>
-						<small> Valor1</small>
+						<small> {{car.autor}}</small>
 					</label>
-				</ion-item>
-				<ion-item>
+				</ion-row>
+				<ion-row>
 					<strong>
-						<small> Campo2: </small>
+						<small> Fecha: &nbsp;</small>
 					</strong>
 					<label>
-						<small> Valor2</small>
+						<small> {{car.fecha.split('T')[0]}}</small>
 					</label>
-				</ion-item>
-				<ion-item>
+				</ion-row>
+				<ion-row>
 					<strong>
-						<small> Campo3: </small>
+						<small> Categoria: &nbsp;</small>
 					</strong>
 					<label>
-						<small> Valor3</small>
+						<small>{{ car.categoria }}</small>
 					</label>
-				</ion-item>
-				<ion-item>
+				</ion-row>
+				<!-- <ion-row>
 					<strong>
-						<small> Campo4: </small>
+						<small> Campo4:&nbsp; </small>
 					</strong>
 					<label>
 						<small> Valor4 </small>
 					</label>
-				</ion-item>
-				<ion-item>
+				</ion-row>
+				<ion-row>
 					<strong>
-						<small> Campo5: </small>
+						<small> Campo5: &nbsp;</small>
 					</strong>
 					<label>
 						<small> Valor5</small>
 					</label>
-				</ion-item>
-			</ion-list>
+				</ion-row> -->
+			</ion-grid>
 		</ion-card-content>
 		<ion-grid>
 			<ion-row>
 				<ion-col col-2>
 					<button ion-button icon-start clear small>
 						<ion-icon class="iconsCards" ios="ios-star-outline" md="ios-star-outline"></ion-icon>
-						<div>4</div>
+						<div>{{car.star}}</div>
 					</button>
 				</ion-col>
 				<ion-col col-2>
 					<button ion-button icon-start clear small>
 						<ion-icon class="iconsCards" ios="ios-eye-outline" md="ios-eye-outline"></ion-icon>
-						<div>180</div>
-					</button>
-				</ion-col>
-				<ion-col col-8 text-right>
-					<button ion-button icon-start clear small>
-						<ion-icon ios="md-share" md="md-share"></ion-icon>
-					</button>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</ion-card>
-
-	<ion-card>
-		<ion-item>
-			<ion-avatar item-start>
-				<img src="https://www.google.com/s2/favicons?domain=www.youtube.com">
-			</ion-avatar>
-			<p>What is Lorem Ipsum?</p>
-			<h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
-		</ion-item>
-		<div class="paddingDiv">
-			<label class="labelTitle"> Lorem IpsumLorem IpsumLorem Ipsum </label>
-			<!-- <img src="../../assets/imgs/categorias/anime.jpg"> -->
-		</div>
-		<ion-card-content>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus aliquam velit, et luctus orci sodales nec. Morbi
-				at libero sed ipsum condimentum congue. Mauris a sapien sit amet libero molestie posuere non non libero. Nullam orci
-				nulla, pretium id facilisis et, semper nec tortor. Fusce non auctor nulla. </p>
-			<ion-list>
-				<ion-item>
-					<strong>
-						<small> Campo1: </small>
-					</strong>
-					<label>
-						<small> Valor1</small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo2: </small>
-					</strong>
-					<label>
-						<small> Valor2</small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo3: </small>
-					</strong>
-					<label>
-						<small> Valor3</small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo4: </small>
-					</strong>
-					<label>
-						<small> Valor4 </small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo5: </small>
-					</strong>
-					<label>
-						<small> Valor5</small>
-					</label>
-				</ion-item>
-			</ion-list>
-		</ion-card-content>
-		<ion-grid>
-			<ion-row>
-				<ion-col col-2>
-					<button ion-button icon-start clear small>
-						<ion-icon class="iconsCards" ios="ios-star-outline" md="ios-star-outline"></ion-icon>
-						<div>4</div>
-					</button>
-				</ion-col>
-				<ion-col col-2>
-					<button ion-button icon-start clear small>
-						<ion-icon class="iconsCards" ios="ios-eye-outline" md="ios-eye-outline"></ion-icon>
-						<div>180</div>
-					</button>
-				</ion-col>
-				<ion-col col-8 text-right>
-					<button ion-button icon-start clear small>
-						<ion-icon ios="md-share" md="md-share"></ion-icon>
-					</button>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</ion-card>
-
-	<ion-card>
-		<ion-item>
-			<ion-avatar item-start>
-				<img src="https://www.google.com/s2/favicons?domain=www.youtube.com">
-			</ion-avatar>
-			<p>What is Lorem Ipsum?</p>
-			<h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
-		</ion-item>
-		<div class="paddingDiv">
-			<label class="labelTitle"> Lorem IpsumLorem IpsumLorem Ipsum </label>
-			<img src="../../assets/imgs/categorias/anime.jpg">
-		</div>
-		<ion-card-content>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus aliquam velit, et luctus orci sodales nec. Morbi
-				at libero sed ipsum condimentum congue. Mauris a sapien sit amet libero molestie posuere non non libero. Nullam orci
-				nulla, pretium id facilisis et, semper nec tortor. Fusce non auctor nulla. </p>
-			<ion-list>
-				<ion-item>
-					<strong>
-						<small> Campo1: </small>
-					</strong>
-					<label>
-						<small> Valor1</small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo2: </small>
-					</strong>
-					<label>
-						<small> Valor2</small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo3: </small>
-					</strong>
-					<label>
-						<small> Valor3</small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo4: </small>
-					</strong>
-					<label>
-						<small> Valor4 </small>
-					</label>
-				</ion-item>
-				<ion-item>
-					<strong>
-						<small> Campo5: </small>
-					</strong>
-					<label>
-						<small> Valor5</small>
-					</label>
-				</ion-item>
-			</ion-list>
-		</ion-card-content>
-		<ion-grid>
-			<ion-row>
-				<ion-col col-2>
-					<button ion-button icon-start clear small>
-						<ion-icon class="iconsCards" ios="ios-star-outline" md="ios-star-outline"></ion-icon>
-						<div>4</div>
-					</button>
-				</ion-col>
-				<ion-col col-2>
-					<button ion-button icon-start clear small>
-						<ion-icon class="iconsCards" ios="ios-eye-outline" md="ios-eye-outline"></ion-icon>
-						<div>180</div>
+						<div>{{car.view}}</div>
 					</button>
 				</ion-col>
 				<ion-col col-8 text-right>

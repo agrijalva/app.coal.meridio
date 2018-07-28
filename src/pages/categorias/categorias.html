@@ -7,16 +7,15 @@
 	</ion-navbar>
 </ion-header>
 
-
 <ion-content>
 	<div class="divForm">
 		<ion-grid text-center>
 			<ion-row wrap>
-				<ion-col col-10>
-					<ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+				<ion-col col-11>
+					<ion-searchbar #busqueda [showCancelButton]="true" (keyup.enter)="search(busqueda.value)">
 					</ion-searchbar>
 				</ion-col>
-				<ion-col col-2 >
+				<ion-col col-1>
 						<ion-icon class="filterIcon" ios="ios-funnel-outline" md="ios-funnel-outline" (click) ="goFiltro()"></ion-icon>
 				</ion-col>
 			</ion-row>
@@ -24,25 +23,9 @@
 	</div>
 
 	<div>
-		<ion-card>
-			<img src="../../assets/imgs/categorias/sov.jpg" />
-			<div class="card-title">IMAGENES SOVIETICAS</div>
+		<ion-card *ngFor="let cat of categorias" (click)="goBuscarCat(cat)">
+			<img src="{{cat.imagen}}" />
+			<div class="card-title">{{cat.categoria}}</div>
 		</ion-card>
-
-		<ion-card>
-			<img src="../../assets/imgs/categorias/anime.jpg" />
-			<div class="card-title">ANIME</div>
-		</ion-card>
-
-		<ion-card>
-			<img src="../../assets/imgs/categorias/caricaturas.jpg" />
-			<div class="card-title">CARICATURAS</div>
-		</ion-card>
-
-		<ion-card>
-			<img src="../../assets/imgs/categorias/chiche.jpg" />
-			<div class="card-title">HISTORIA</div>
-		</ion-card>
-
 	</div>
 </ion-content>

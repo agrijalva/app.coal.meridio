@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -12,6 +13,7 @@ import { ArticuloPage } from '../pages/articulo/articulo';
 import { ConocenosPage } from '../pages/conocenos/conocenos';
 import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 import { AyudaPage } from '../pages/ayuda/ayuda';
+import { BuscarcatPage } from '../pages/buscarcat/buscarcat';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,10 +29,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 		ArticuloPage,
 		ConocenosPage,
 		SitiosfavPage,
-		AyudaPage
+		AyudaPage,
+		BuscarcatPage
 	],
 	imports: [
 		BrowserModule,
+		HttpClientModule,
 		IonicModule.forRoot(MyApp),
 	],
 	bootstrap: [IonicApp],
@@ -44,7 +48,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 		ArticuloPage,
 		ConocenosPage,
 		SitiosfavPage,
-		AyudaPage
+		AyudaPage,
+		BuscarcatPage
 	],
 	providers: [
 		StatusBar,

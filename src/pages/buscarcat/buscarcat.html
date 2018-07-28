@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-navbar text-center>
+		<button class="burguerButton" ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<img class="logoCenter" src="../../assets/imgs/login/logo_meridio_header.png">
+	</ion-navbar>
+	<div class="divSubHeader">
+		<ion-toolbar>
+			<ion-title text-center>{{subTitle}}</ion-title>
+		</ion-toolbar>
+	</div>
+</ion-header>
+
+<ion-content padding>
+	<ion-row wrap>
+		<ion-col col-12>
+			<ion-searchbar #busqueda [showCancelButton]="true" (keyup.enter)="search(busqueda.value)">
+			</ion-searchbar>
+		</ion-col>
+	</ion-row>
+</ion-content>
