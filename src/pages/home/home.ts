@@ -31,7 +31,6 @@ export class HomePage {
 	}
 
 	getFilterData() {
-		console.log( 'filtrosData', this.filtrosData );
 		this.navCtrl.push( ResultadosPage );
 	}
 
@@ -39,7 +38,6 @@ export class HomePage {
 		let Params = new HttpParams();
 		this._http.get(this._urlCategorias, {params: Params}).subscribe(data => {
 			this.categorias = data;
-			console.log( 'categorias', this.categorias );
 		});
 	};
 };

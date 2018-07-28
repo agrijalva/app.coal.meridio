@@ -13,6 +13,7 @@ import { ArticuloPage } from '../pages/articulo/articulo';
 import { ConocenosPage } from '../pages/conocenos/conocenos';
 import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 import { AyudaPage } from '../pages/ayuda/ayuda';
+import { BuscarcatPage } from '../pages/buscarcat/buscarcat';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +29,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 		ArticuloPage,
 		ConocenosPage,
 		SitiosfavPage,
-		AyudaPage
+		AyudaPage,
+		BuscarcatPage
 	],
 	imports: [
 		BrowserModule,
@@ -46,7 +48,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 		ArticuloPage,
 		ConocenosPage,
 		SitiosfavPage,
-		AyudaPage
+		AyudaPage,
+		BuscarcatPage
 	],
 	providers: [
 		StatusBar,

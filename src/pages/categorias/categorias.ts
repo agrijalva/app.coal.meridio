@@ -6,6 +6,7 @@ import 'rxjs/add/operator/do';
 import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { HomePage } from '../home/home';
+import { BuscarcatPage } from '../buscarcat/buscarcat';
 
 @IonicPage()
 @Component({
@@ -40,4 +41,8 @@ export class CategoriasPage {
     goFiltro() {
         this.navCtrl.push(HomePage);
     };
+
+    goBuscarCat(categoria){
+        this.navCtrl.push( BuscarcatPage, {sendCat: categoria} );
+    }
 };

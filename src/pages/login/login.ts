@@ -20,14 +20,10 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   login(){
-    
     this.navCtrl.setRoot( HomePage );
-    console.log( 'usuario', this.loginData.usuario );
-    console.log( 'pass', this.loginData.pass );
   }
 
 }
