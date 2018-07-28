@@ -12,7 +12,7 @@
 		<ion-grid text-center>
 			<ion-row wrap>
 				<ion-col col-11>
-					<ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+					<ion-searchbar #busqueda [showCancelButton]="true" (keyup.enter)="search(q.busqueda)">
 					</ion-searchbar>
 				</ion-col>
 				<ion-col col-1>

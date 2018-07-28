@@ -45,4 +45,9 @@ export class CategoriasPage {
     goBuscarCat(categoria){
         this.navCtrl.push( BuscarcatPage, {sendCat: categoria} );
     }
+
+    search(busqueda: string) { 
+        console.log(busqueda); 
+    }
+
 };
