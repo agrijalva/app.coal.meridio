@@ -56,7 +56,7 @@ export class CategoriasPage {
             this.enlaces = data
             if( this.enlaces.length > 0 ){
                 this.navCtrl.push( ResultadosPage, {enlaces: this.enlaces} );
-            }
+            };
         });
     };
 

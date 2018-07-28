@@ -15,7 +15,7 @@
 <ion-content padding>
 	<ion-row wrap>
 		<ion-col col-12>
-			<ion-searchbar #busqueda [showCancelButton]="true" (keyup.enter)="search(q.busqueda)">
+			<ion-searchbar #busqueda [showCancelButton]="true" (keyup.enter)="search(busqueda.value)">
 			</ion-searchbar>
 		</ion-col>
 	</ion-row>
