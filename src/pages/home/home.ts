@@ -3,8 +3,7 @@ import { NavController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
-import { HttpClient, 
-		HttpParams, } from '@angular/common/http';
+import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { ResultadosPage } from '../resultados/resultados';
 
