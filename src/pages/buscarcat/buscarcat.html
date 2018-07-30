@@ -12,16 +12,21 @@
 	</div>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 	<ion-row wrap>
-		<ion-col col-12>
-			<ion-searchbar #busqueda [showCancelButton]="true" (keyup.enter)="search(busqueda.value)">
+		<ion-col>
+			<ion-searchbar #busqueda [showCancelButton]="true" placeholder="Buscar" (keyup.enter)="search(busqueda.value)">
 			</ion-searchbar>
 		</ion-col>
 	</ion-row>
-	<ion-row wrap>
-		<ion-col>
-			<img src="{{imagen}}">
-		</ion-col>
-	</ion-row>
+	<div class="divPadre">
+		<div class="circleBase circleDiv">
+			<img src="{{imagen}}" width="200">
+		</div>
+		<br>
+		<div class="divText">
+			<label> Introduce tus parametros de busqueda</label>
+		</div>
+	</div>
+
 </ion-content>
