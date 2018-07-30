@@ -14,10 +14,11 @@ import { ResultadosPage } from '../resultados/resultados';
 export class HomePage {
 	private url: string = 'http://coal.com.mx:1100';
 	public categorias: any;
+	public tema: any;
+	public idioma: any;
 	
 	private filtrosData = {
 				materia: '',
-				tema: '',
 				titulo: '',
 				palabraClave: ''
 			};
