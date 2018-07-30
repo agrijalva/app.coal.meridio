@@ -28,12 +28,6 @@ export class HomePage {
 
 	ionViewDidLoad() {
 		this.getCategorias();
-		let alert = this.alertCtrl.create({
-			title: 'URL',
-			subTitle: this._urlCategorias,
-			buttons: ['Dismiss']
-		  });
-		  alert.present();
 	}
 
 	getFilterData() {
@@ -43,14 +37,7 @@ export class HomePage {
 	getCategorias(){
 		let Params = new HttpParams();
 		this._http.get(this._urlCategorias, {params: Params}).subscribe(data => {
-			
 			this.categorias = data;
-			let alert = this.alertCtrl.create({
-				title: 'URL',
-				subTitle: this.categorias,
-				buttons: ['Cerrar']
-			  });
-			  alert.present();
 		});
 	};
 };

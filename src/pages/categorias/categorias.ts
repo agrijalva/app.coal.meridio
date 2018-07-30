@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -19,7 +19,7 @@ export class CategoriasPage {
     private categorias: any;
     private enlaces: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController) {
     }
 
     private _urlCategorias = this.url + "/api/categoria/categorias";
@@ -29,33 +29,41 @@ export class CategoriasPage {
         this.getCategorias();
     };
 
-    getCategorias(){
+    getCategorias() {
         let Params = new HttpParams();
-        this._http.get(this._urlCategorias, {params: Params}).subscribe(data => {
+        this._http.get(this._urlCategorias, { params: Params }).subscribe(data => {
             this.categorias = data;
-			if( this.categorias.length > 0 ){
-                this.categorias.forEach(function(value){
+            if (this.categorias.length > 0) {
+                this.categorias.forEach(function (value) {
                     value.imagen = '../../assets/imgs/categorias/' + value.imagen;
                 });
             }
-		});
-	};
+        });
+    };
 
     goFiltro() {
         this.navCtrl.push(HomePage);
     };
 
-    goBuscarCat(categoria){
-        this.navCtrl.push( BuscarcatPage, {sendCat: categoria} );
+    goBuscarCat(categoria) {
+        this.navCtrl.push(BuscarcatPage, { sendCat: categoria });
     };
 
-    search(busqueda: string) { 
+    search(busqueda: string) {
+        let loading = this.loadingCtrl.create({
+            content: '',
+            spinner: 'crescent'
+        });
+
+        loading.present();
+
         let Params = new HttpParams();
         Params = Params.append("busqueda", busqueda);
-		this._http.get(this._urlEnlaces, {params: Params}).subscribe(data => {
+        this._http.get(this._urlEnlaces, { params: Params }).subscribe(data => {
             this.enlaces = data
-            if( this.enlaces.length > 0 ){
-                this.navCtrl.push( ResultadosPage, {enlaces: this.enlaces} );
+            if (this.enlaces.length > 0) {
+                loading.dismiss();
+                this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
             };
         });
     };
