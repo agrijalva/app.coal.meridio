@@ -17,15 +17,15 @@ export class ResultadosPage {
 
 	ionViewDidLoad() {
 		this.getEnlaces();
-	}
-
-	public goArticulo(link){
-		console.log( link );
-		this.navCtrl.push( ArticuloPage, {link: link} );
-	}
+	};
 
 	private getEnlaces(){
 		this.enlacesGet = this.navParams.get('enlaces');
-	}
+		console.log( 'enlacesGet', this.enlacesGet );
+	};
+
+	public goArticulo(link){
+		this.navCtrl.push( ArticuloPage, {link: link} );
+	};
 
 }
