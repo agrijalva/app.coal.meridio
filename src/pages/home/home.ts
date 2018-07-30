@@ -17,9 +17,9 @@ export class HomePage {
 	public idiomas: any;
 	public temas: any;
 
-	public categoria: any
-	public tema: any;
-	public idioma: any;
+	public categoria: any = 0;
+	public tema: any = 0;
+	public idioma: any = 0;
 	
 	private filtrosData = {
 				descripcion: '',

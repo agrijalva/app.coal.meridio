@@ -44,6 +44,7 @@
 			<ion-item>
 					<ion-label>Idioma</ion-label>
 					<ion-select name="idioma" [(ngModel)]="idioma">
+							<ion-option value="0">Todos</ion-option>
 						<ion-option *ngFor="let idioma of idiomas" value="{{idioma.idIdioma}}">{{idioma.idioma}}</ion-option>
 					</ion-select>
 				</ion-item>
