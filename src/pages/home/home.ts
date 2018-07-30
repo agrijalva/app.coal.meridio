@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController  } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -13,6 +13,8 @@ import { ResultadosPage } from '../resultados/resultados';
 })
 export class HomePage {
 	private url: string = 'http://coal.com.mx:1100';
+	private enlaces: any;
+	public idUsuario: any = 0;
 	public categorias: any;
 	public idiomas: any;
 	public temas: any;
@@ -27,11 +29,12 @@ export class HomePage {
 				palabraClave: ''
 			};
 		
-	constructor(public navCtrl: NavController, private _http: HttpClient) {	}
+	constructor(public navCtrl: NavController, private _http: HttpClient, public loadingCtrl: LoadingController) {	}
 	
 	private _urlCategorias = this.url + "/api/categoria/categorias";
 	private _urlIdiomas = this.url + "/api/idioma/idiomas";
 	private _urlTemas = this.url + "/api/tema/temaByIdCat";
+	private _urlEnlaces = this.url + "/api/enlaces/busquedaEnlaces"
 
 	ionViewDidLoad() {
 		this.getCategorias();
@@ -39,13 +42,27 @@ export class HomePage {
 	};
 
 	getFilterData() {
-		console.log( 'titulo', this.filtrosData.titulo );
-		console.log( 'descripcion', this.filtrosData.descripcion );
-		console.log( 'palabraClave', this.filtrosData.palabraClave );
-		console.log( 'categoria', this.categoria );
-		console.log( 'tema', this.tema );
-		console.log( 'idioma', this.idioma );
-		//this.navCtrl.push( ResultadosPage );
+		let loading = this.loadingCtrl.create({
+            content: '',
+            spinner: 'crescent'
+        });
+
+        loading.present();
+		let Params = new HttpParams();
+		Params = Params.append( 'idUsuario', this.idUsuario );
+		Params = Params.append( 'idCategoria', this.categoria );
+		Params = Params.append( 'idTema', this.tema );
+		Params = Params.append( 'titulo', this.filtrosData.titulo );
+		Params = Params.append( 'descripcion', this.filtrosData.descripcion );
+		Params = Params.append( 'clave', this.filtrosData.palabraClave );
+		Params = Params.append( 'idIdioma', this.idioma );
+		this._http.get(this._urlEnlaces, {params: Params}).subscribe(data => {
+			this.enlaces = data
+            if (this.enlaces.length > 0) {
+                loading.dismiss();
+                this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
+            };
+		});
 	};
 
 	getCategorias(){
