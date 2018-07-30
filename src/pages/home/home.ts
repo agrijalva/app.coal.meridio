@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController  } from 'ionic-angular';
+import { NavController  } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -22,7 +22,7 @@ export class HomePage {
 				palabraClave: ''
 			};
 		
-	constructor(public navCtrl: NavController, private _http: HttpClient, private alertCtrl: AlertController) {	}
+	constructor(public navCtrl: NavController, private _http: HttpClient) {	}
 	
 	private _urlCategorias = this.url + "/api/categoria/categorias";
 
