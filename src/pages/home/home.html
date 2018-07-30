@@ -18,7 +18,8 @@
 		<form (ngSubmit)="getFilterData()">
 			<ion-item>
 				<ion-label>Categoria</ion-label>
-				<ion-select name="categoria" [(ngModel)]="categoria">
+				<ion-select name="categoria" [(ngModel)]="categoria" (ngModelChange)="getTema(categoria)">
+					<ion-option value="0">Todos</ion-option>
 					<ion-option *ngFor="let cat of categorias" value="{{cat.idCategoria}}">{{cat.categoria}}</ion-option>
 				</ion-select>
 			</ion-item>
@@ -27,7 +28,8 @@
 			<ion-item>
 				<ion-label>Tema</ion-label>
 				<ion-select name="tema" [(ngModel)]="tema">
-					<!-- <ion-option *ngFor="let cat of categorias" value="{{cat.idCategoria}}">{{cat.categoria}}</ion-option> -->
+					<ion-option value="0">Todos</ion-option>
+					<ion-option *ngFor="let tema of temas" value="{{tema.idTema}}">{{tema.tema}}</ion-option>
 				</ion-select>
 			</ion-item>
 			<ion-item>
@@ -42,7 +44,7 @@
 			<ion-item>
 					<ion-label>Idioma</ion-label>
 					<ion-select name="idioma" [(ngModel)]="idioma">
-						<!-- <ion-option *ngFor="let cat of categorias" value="{{cat.idCategoria}}">{{cat.categoria}}</ion-option> -->
+						<ion-option *ngFor="let idioma of idiomas" value="{{idioma.idIdioma}}">{{idioma.idioma}}</ion-option>
 					</ion-select>
 				</ion-item>
 			<div padding style="width: 100%; height: 10px;">
