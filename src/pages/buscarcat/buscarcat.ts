@@ -14,7 +14,7 @@ import { ResultadosPage } from '../resultados/resultados';
 	templateUrl: 'buscarcat.html',
 })
 export class BuscarcatPage {
-	private url: string = 'http://localhost:1100';
+	private url: string = 'http://coal.com.mx:1100';
 	public subTitle: string;
 	public categorias: any;
 	private enlaces: any;

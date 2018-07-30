@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController  } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -12,7 +12,8 @@ import { ResultadosPage } from '../resultados/resultados';
 	templateUrl: 'home.html'
 })
 export class HomePage {
-	private url: string = 'http://localhost:1100';
+	private url: string = 'http://coal.com.mx:1100';
+	public categorias: any;
 	
 	private filtrosData = {
 				materia: '',
@@ -20,14 +21,19 @@ export class HomePage {
 				titulo: '',
 				palabraClave: ''
 			};
-	private categorias: any;
 		
-	constructor(public navCtrl: NavController, private _http: HttpClient) {	}
+	constructor(public navCtrl: NavController, private _http: HttpClient, private alertCtrl: AlertController) {	}
 	
 	private _urlCategorias = this.url + "/api/categoria/categorias";
 
 	ionViewDidLoad() {
 		this.getCategorias();
+		let alert = this.alertCtrl.create({
+			title: 'URL',
+			subTitle: this._urlCategorias,
+			buttons: ['Dismiss']
+		  });
+		  alert.present();
 	}
 
 	getFilterData() {
@@ -37,7 +43,14 @@ export class HomePage {
 	getCategorias(){
 		let Params = new HttpParams();
 		this._http.get(this._urlCategorias, {params: Params}).subscribe(data => {
+			
 			this.categorias = data;
+			let alert = this.alertCtrl.create({
+				title: 'URL',
+				subTitle: this.categorias,
+				buttons: ['Cerrar']
+			  });
+			  alert.present();
 		});
 	};
 };
