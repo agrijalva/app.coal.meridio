@@ -21,10 +21,7 @@ export class CategoriasPage {
 
     //Variables para la peticion de enlaces
     public idUsuario: any = 1;
-    private filtrosData = {
-        palabraClave: ''
-    };
-
+    
     constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
     }
 
