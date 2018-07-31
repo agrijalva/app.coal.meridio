@@ -18,24 +18,36 @@
 		<form (ngSubmit)="getFilterData()">
 			<ion-item>
 				<ion-label>Categoria</ion-label>
-				<ion-select name="categoria" [(ngModel)]="categoria">
+				<ion-select name="categoria" [(ngModel)]="categoria" (ngModelChange)="getTema(categoria)">
+					<ion-option value="0">Todos</ion-option>
 					<ion-option *ngFor="let cat of categorias" value="{{cat.idCategoria}}">{{cat.categoria}}</ion-option>
 				</ion-select>
 			</ion-item>
 			<br>
 			<br>
 			<ion-item>
-				<ion-input type="text" name="materia" [(ngModel)]="filtrosData.materia" placeholder="Materia"></ion-input>
+				<ion-label>Tema</ion-label>
+				<ion-select name="tema" [(ngModel)]="tema">
+					<ion-option value="0">Todos</ion-option>
+					<ion-option *ngFor="let tema of temas" value="{{tema.idTema}}">{{tema.tema}}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item>
-				<ion-input type="text" name="tema" [(ngModel)]="filtrosData.tema" placeholder="Tema"></ion-input>
+				<ion-input type="text" name="titulo" [(ngModel)]="filtrosData.titulo" placeholder="Título"></ion-input>
 			</ion-item>
 			<ion-item>
-				<ion-input type="text" name="titulo" [(ngModel)]="filtrosData.titulo" placeholder="Titulo"></ion-input>
+				<ion-input type="text" name="descripcion" [(ngModel)]="filtrosData.descripcion" placeholder="Descripcion"></ion-input>
 			</ion-item>
 			<ion-item>
 				<ion-input type="text" name="palabraClave" [(ngModel)]="filtrosData.palabraClave" placeholder="Palabra Clave"></ion-input>
 			</ion-item>
+			<ion-item>
+					<ion-label>Idioma</ion-label>
+					<ion-select name="idioma" [(ngModel)]="idioma">
+							<ion-option value="0">Todos</ion-option>
+						<ion-option *ngFor="let idioma of idiomas" value="{{idioma.idIdioma}}">{{idioma.idioma}}</ion-option>
+					</ion-select>
+				</ion-item>
 			<div padding style="width: 100%; height: 10px;">
 				<button padding ion-button class="submit-btn" full type="submit">
 					Buscar

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -19,11 +19,17 @@ export class CategoriasPage {
     private categorias: any;
     private enlaces: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController) {
+    //Variables para la peticion de enlaces
+    public idUsuario: any = 1;
+    private filtrosData = {
+        palabraClave: ''
+    };
+
+    constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
     }
 
     private _urlCategorias = this.url + "/api/categoria/categorias";
-    private _urlEnlaces = this.url + "/api/enlaces/enlacesTodas";
+    private _urlEnlaces = this.url + "/api/enlaces/busquedaEnlaces";
 
     ionViewDidLoad() {
         this.getCategorias();
@@ -35,7 +41,7 @@ export class CategoriasPage {
             this.categorias = data;
             if (this.categorias.length > 0) {
                 this.categorias.forEach(function (value) {
-                    value.imagen = '../../assets/imgs/categorias/' + value.imagen;
+                    value.imagen = 'http://coal.com.mx:1100/images/categorias/' + value.imagen;
                 });
             }
         });
@@ -58,12 +64,26 @@ export class CategoriasPage {
         loading.present();
 
         let Params = new HttpParams();
-        Params = Params.append("busqueda", busqueda);
+        Params = Params.append( 'idUsuario', this.idUsuario );
+		Params = Params.append( 'idCategoria', '0' );
+		Params = Params.append( 'idTema', '0');
+		Params = Params.append( 'titulo', busqueda);
+		Params = Params.append( 'descripcion', busqueda);
+		Params = Params.append( 'clave', '' );
+        Params = Params.append( 'idIdioma', '0' );
         this._http.get(this._urlEnlaces, { params: Params }).subscribe(data => {
             this.enlaces = data
             if (this.enlaces.length > 0) {
                 loading.dismiss();
                 this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
+            }else{
+                loading.dismiss();
+				let alert = this.alertCtrl.create({
+					title: 'Resultados',
+					subTitle: 'No se encontraron enlaces.',
+					buttons: ['Cerrar']
+				});
+				alert.present();
             };
         });
     };

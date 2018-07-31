@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -15,31 +15,52 @@ import { ResultadosPage } from '../resultados/resultados';
 })
 export class BuscarcatPage {
 	private url: string = 'http://coal.com.mx:1100';
+	public idUsuario: any = 1;
 	public subTitle: string;
 	public categorias: any;
 	private enlaces: any;
-	constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient) {
+	public imagen: any;
+	constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
 	}
 
-	private _urlCategoriasByIdCat = this.url + "/api/enlaces/enlacesByIdCat";
+	private _urlCategoriasByIdCat = this.url + "/api/enlaces/busquedaEnlaces";
 
 	ionViewDidLoad() {
-		this.categorias = this.navParams.get('sendCat')
+		this.categorias = this.navParams.get('sendCat');
+		this.imagen = this.categorias.imagen;
 		this.subTitle = this.categorias.categoria;
 	}
 
-	search(busqueda: string) { 
-        let Params = new HttpParams();
-		Params = Params.append("busqueda", busqueda);
-		Params = Params.append("idCategoria", this.categorias.idCategoria);
-		
-		this._http.get(this._urlCategoriasByIdCat, {params: Params}).subscribe(data => {
-            this.enlaces = data
-            if( this.enlaces.length > 0 ){
-				
-                this.navCtrl.push( ResultadosPage, {enlaces: this.enlaces} );
-            }
-        });
-    }
+	search(busqueda: string) {
+		let loading = this.loadingCtrl.create({
+			content: '',
+			spinner: 'crescent'
+		});
+
+		loading.present();
+		let Params = new HttpParams();
+		Params = Params.append('idUsuario', this.idUsuario);
+		Params = Params.append('idCategoria', this.categorias.idCategoria);
+		Params = Params.append('idTema', '0');
+		Params = Params.append('titulo', busqueda);
+		Params = Params.append('descripcion', busqueda);
+		Params = Params.append('clave', '');
+		Params = Params.append('idIdioma', '0');
+		this._http.get(this._urlCategoriasByIdCat, { params: Params }).subscribe(data => {
+			this.enlaces = data
+			if (this.enlaces.length > 0) {
+				loading.dismiss();
+				this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
+			} else {
+				loading.dismiss();
+				let alert = this.alertCtrl.create({
+					title: 'Resultados',
+					subTitle: 'No se encontraron enlaces.',
+					buttons: ['Cerrar']
+				});
+				alert.present();
+			};
+		});
+	}
 
 }

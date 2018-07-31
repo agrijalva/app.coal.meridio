@@ -15,13 +15,13 @@
 	<ion-card *ngFor="let car of enlacesGet">
 		<ion-item>
 			<ion-avatar item-start>
-				<img src="{{car.icon}}">
+				<img src="https://www.google.com/s2/favicons?domain={{car.fuente}}" width="12">
 			</ion-avatar>
-			<p>{{car.URL}}</p>
+			<p>{{car.fuente}}</p>
 			<h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</ion-item>
 		<div class="paddingDiv">
-			<label class="labelTitle" (click)="goArticulo(car.URL)"> {{car.tema}} </label>
+			<label class="labelTitle" (click)="goArticulo(car.URL)"> {{car.titulo}} </label>
 			<img src="{{car.image}}">
 		</div>
 		<ion-card-content>
@@ -74,13 +74,13 @@
 				<ion-col col-2>
 					<button ion-button icon-start clear small>
 						<ion-icon class="iconsCards" ios="ios-star-outline" md="ios-star-outline"></ion-icon>
-						<div>{{car.star}}</div>
+						<div>{{car.star}} &nbsp; 0 </div>
 					</button>
 				</ion-col>
 				<ion-col col-2>
 					<button ion-button icon-start clear small>
 						<ion-icon class="iconsCards" ios="ios-eye-outline" md="ios-eye-outline"></ion-icon>
-						<div>{{car.view}}</div>
+						<div>{{car.view}} &nbsp; 0 </div>
 					</button>
 				</ion-col>
 				<ion-col col-8 text-right>
