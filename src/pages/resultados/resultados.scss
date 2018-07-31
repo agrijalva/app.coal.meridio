@@ -19,24 +19,25 @@ page-resultados {
     //Avatar
     .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left], .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start] {
         margin: 0 0 0 0; 
-    }
+    };
 
     .item-md ion-avatar {
         min-width: 20px;
         min-height: 40px;
-    }
+    };
 
     .paddingDiv{
         padding: 0 16px 16px 16px;
-    }
+    };
 
     .labelTitle{
         font-size: 20px;
         font-family: 'Raleway-Regular';
         font-weight: bold;
-    }
+    };
 
     img{
         max-width: 30% !important;
-    }
+    };
+    
 };

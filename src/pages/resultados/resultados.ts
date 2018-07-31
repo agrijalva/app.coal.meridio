@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { ArticuloPage } from '../articulo/articulo';
@@ -13,7 +13,7 @@ export class ResultadosPage {
 
 	public enlacesGet: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public actionSheetCtrl: ActionSheetController) {
 	}
 
 	ionViewDidLoad() {
@@ -22,7 +22,7 @@ export class ResultadosPage {
 
 	private getEnlaces() {
 		this.enlacesGet = this.navParams.get('enlaces');
-		console.log( 'enlacesGte', this.enlacesGet );
+		console.log('enlacesGte', this.enlacesGet);
 	};
 
 	public goArticulo(link) {
@@ -31,9 +31,35 @@ export class ResultadosPage {
 		browser.on('loadstop').subscribe(event => {
 			//browser.insertCSS({ code: "body{color: blac;" });
 		});
-
-		//browser.close();
-		//this.navCtrl.push( ArticuloPage, {link: link} );
 	};
+
+	share() {
+		const actionSheet = this.actionSheetCtrl.create({
+			title: 'Compartir',
+			buttons: [
+				{
+					text: 'Facebook',
+					icon: 'logo-facebook',
+					role: 'destructive',
+					handler: () => {
+						console.log('Destructive clicked');
+					}
+				}, {
+					text: 'WhatsApp',
+					icon: 'logo-whatsapp',
+					handler: () => {
+						console.log('Archive clicked');
+					}
+				}, {
+					text: 'Cancelar',
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				}
+			]
+		});
+		actionSheet.present();
+	}
 
 }
