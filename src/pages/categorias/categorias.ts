@@ -72,7 +72,7 @@ export class CategoriasPage {
 		Params = Params.append( 'clave', '' );
         Params = Params.append( 'idIdioma', '0' );
         this._http.get(this._urlEnlaces, { params: Params }).subscribe(data => {
-            this.enlaces = data
+            this.enlaces = data;
             if (this.enlaces.length > 0) {
                 loading.dismiss();
                 this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });

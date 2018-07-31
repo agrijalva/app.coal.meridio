@@ -22,6 +22,7 @@ export class ResultadosPage {
 
 	private getEnlaces() {
 		this.enlacesGet = this.navParams.get('enlaces');
+		console.log( 'enlacesGte', this.enlacesGet );
 	};
 
 	public goArticulo(link) {
