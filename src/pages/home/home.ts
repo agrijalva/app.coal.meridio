@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, MenuController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -29,7 +29,7 @@ export class HomePage {
 		palabraClave: ''
 	};
 
-	constructor(public navCtrl: NavController, private _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) { }
+	constructor(public navCtrl: NavController, private _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private menu: MenuController) { }
 
 	private _urlCategorias = this.url + "/api/categoria/categorias";
 	private _urlIdiomas = this.url + "/api/idioma/idiomas";
@@ -39,6 +39,8 @@ export class HomePage {
 	ionViewDidLoad() {
 		this.getCategorias();
 		this.getIdiomas();
+		
+		this.menu.swipeEnable(true);
 	};
 
 	getFilterData() {
