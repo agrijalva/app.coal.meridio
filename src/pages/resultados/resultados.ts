@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
-import { ArticuloPage } from '../articulo/articulo';
-
 @IonicPage()
 @Component({
 	selector: 'page-resultados',
@@ -13,6 +11,7 @@ import { ArticuloPage } from '../articulo/articulo';
 export class ResultadosPage {
 
 	public enlacesGet: any;
+	private urlShare: any = 'http://coal.com.mx:1100/#/link?';
 
 	constructor(
 		public navCtrl: NavController, 
@@ -47,25 +46,25 @@ export class ResultadosPage {
 					text: 'Facebook',
 					icon: 'logo-facebook',
 					handler: () => {
-						this.socialSharing.shareViaFacebook( 'Este contenido te puede interesar... ' + categoria.titulo , null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace );
+						this.socialSharing.shareViaFacebook( 'Este contenido te puede interesar... ' + categoria.titulo , null, this.urlShare + categoria.idEnlace );
 					}
 				}, {
 					text: 'WhatsApp',
 					icon: 'logo-whatsapp',
 					handler: () => {
-						this.socialSharing.shareViaWhatsApp( 'Este contenido te puede interesar... ' + categoria.titulo  , null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace);
+						this.socialSharing.shareViaWhatsApp( 'Este contenido te puede interesar... ' + categoria.titulo  , null, this.urlShare  + categoria.idEnlace);
 					}
 				}, {
 					text: 'Twitter',
 					icon: 'logo-twitter',
 					handler: () => {
-						this.socialSharing.shareViaTwitter( 'Este contenido te puede interesar... ' + categoria.titulo  , null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace);
+						this.socialSharing.shareViaTwitter( 'Este contenido te puede interesar... ' + categoria.titulo  , null, this.urlShare  + categoria.idEnlace);
 					}
 				},{
 					text: 'Compartir',
 					icon: 'md-share',
 					handler: () => {
-						this.socialSharing.share( 'Este contenido te puede interesar... ' + categoria.titulo  , null, null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace);
+						this.socialSharing.share( 'Este contenido te puede interesar... ' + categoria.titulo  , null, null, this.urlShare  + categoria.idEnlace);
 					}
 				},{
 					text: 'Cancelar',

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 //Page Import
-import { HomePage } from '../home/home';
+import { CategoriasPage } from '../categorias/categorias'
 
 @IonicPage()
 @Component({
@@ -24,7 +24,7 @@ export class LoginPage {
   }
 
   login(){
-    this.navCtrl.setRoot( HomePage );
+    this.navCtrl.setRoot( CategoriasPage );
   }
 
 }
