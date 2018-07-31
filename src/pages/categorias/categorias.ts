@@ -41,7 +41,7 @@ export class CategoriasPage {
             this.categorias = data;
             if (this.categorias.length > 0) {
                 this.categorias.forEach(function (value) {
-                    value.imagen = '../../assets/imgs/categorias/' + value.imagen;
+                    value.imagen = 'http://coal.com.mx:1100/images/categorias/' + value.imagen;
                 });
             }
         });
