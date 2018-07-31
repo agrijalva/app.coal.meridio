@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -22,15 +22,15 @@ export class HomePage {
 	public categoria: any = 0;
 	public tema: any = 0;
 	public idioma: any = 0;
-	
+
 	private filtrosData = {
-				descripcion: '',
-				titulo: '',
-				palabraClave: ''
-			};
-		
-	constructor(public navCtrl: NavController, private _http: HttpClient, public loadingCtrl: LoadingController) {	}
-	
+		descripcion: '',
+		titulo: '',
+		palabraClave: ''
+	};
+
+	constructor(public navCtrl: NavController, private _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) { }
+
 	private _urlCategorias = this.url + "/api/categoria/categorias";
 	private _urlIdiomas = this.url + "/api/idioma/idiomas";
 	private _urlTemas = this.url + "/api/tema/temaByIdCat";
@@ -43,46 +43,54 @@ export class HomePage {
 
 	getFilterData() {
 		let loading = this.loadingCtrl.create({
-            content: '',
-            spinner: 'crescent'
-        });
+			content: '',
+			spinner: 'crescent'
+		});
 
-        loading.present();
+		loading.present();
 		let Params = new HttpParams();
-		Params = Params.append( 'idUsuario', this.idUsuario );
-		Params = Params.append( 'idCategoria', this.categoria );
-		Params = Params.append( 'idTema', this.tema );
-		Params = Params.append( 'titulo', this.filtrosData.titulo );
-		Params = Params.append( 'descripcion', this.filtrosData.descripcion );
-		Params = Params.append( 'clave', this.filtrosData.palabraClave );
-		Params = Params.append( 'idIdioma', this.idioma );
-		this._http.get(this._urlEnlaces, {params: Params}).subscribe(data => {
+		Params = Params.append('idUsuario', this.idUsuario);
+		Params = Params.append('idCategoria', this.categoria);
+		Params = Params.append('idTema', this.tema);
+		Params = Params.append('titulo', this.filtrosData.titulo);
+		Params = Params.append('descripcion', this.filtrosData.descripcion);
+		Params = Params.append('clave', this.filtrosData.palabraClave);
+		Params = Params.append('idIdioma', this.idioma);
+		this._http.get(this._urlEnlaces, { params: Params }).subscribe(data => {
 			this.enlaces = data
-            if (this.enlaces.length > 0) {
-                loading.dismiss();
-                this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
-            };
+			if (this.enlaces.length > 0) {
+				loading.dismiss();
+				this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
+			} else {
+				loading.dismiss();
+				let alert = this.alertCtrl.create({
+					title: 'Resultados',
+					subTitle: 'No se encontraron enlaces.',
+					buttons: ['Cerrar']
+				});
+				alert.present();
+			};
 		});
 	};
 
-	getCategorias(){
+	getCategorias() {
 		let Params = new HttpParams();
-		this._http.get(this._urlCategorias, {params: Params}).subscribe(data => {
+		this._http.get(this._urlCategorias, { params: Params }).subscribe(data => {
 			this.categorias = data;
 		});
 	};
-	
-	getTema(idCategoria){
+
+	getTema(idCategoria) {
 		let Params = new HttpParams();
 		Params = Params.append('idCategoria', idCategoria);
-		this._http.get(this._urlTemas, {params: Params}).subscribe(data => {
+		this._http.get(this._urlTemas, { params: Params }).subscribe(data => {
 			this.temas = data;
 		});
 	};
 
-	getIdiomas(){
+	getIdiomas() {
 		let Params = new HttpParams();
-		this._http.get(this._urlIdiomas, {params: Params}).subscribe(data => {
+		this._http.get(this._urlIdiomas, { params: Params }).subscribe(data => {
 			this.idiomas = data;
 		});
 	};
