@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { ArticuloPage } from '../articulo/articulo';
 
@@ -13,8 +14,12 @@ export class ResultadosPage {
 
 	public enlacesGet: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public actionSheetCtrl: ActionSheetController) {
-	}
+	constructor(
+		public navCtrl: NavController, 
+		public navParams: NavParams, 
+		private iab: InAppBrowser, 
+		public actionSheetCtrl: ActionSheetController,
+		private socialSharing: SocialSharing) {}
 
 	ionViewDidLoad() {
 		this.getEnlaces();
@@ -33,24 +38,36 @@ export class ResultadosPage {
 		});
 	};
 
-	share() {
+	share(categoria) {
+		console.log( 'catregoria', categoria );
 		const actionSheet = this.actionSheetCtrl.create({
 			title: 'Compartir',
 			buttons: [
 				{
 					text: 'Facebook',
 					icon: 'logo-facebook',
-					role: 'destructive',
 					handler: () => {
-						console.log('Destructive clicked');
+						this.socialSharing.shareViaFacebook( 'Este contenido te puede interesar... ' + categoria.titulo , null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace );
 					}
 				}, {
 					text: 'WhatsApp',
 					icon: 'logo-whatsapp',
 					handler: () => {
-						console.log('Archive clicked');
+						this.socialSharing.shareViaWhatsApp( 'Este contenido te puede interesar... ' + categoria.titulo  , null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace);
 					}
 				}, {
+					text: 'Twitter',
+					icon: 'logo-twitter',
+					handler: () => {
+						this.socialSharing.shareViaTwitter( 'Este contenido te puede interesar... ' + categoria.titulo  , null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace);
+					}
+				},{
+					text: 'Compartir',
+					icon: 'md-share',
+					handler: () => {
+						this.socialSharing.share( 'Este contenido te puede interesar... ' + categoria.titulo  , null, null, 'http://coal.com.mx:1100/#/' + categoria.idEnlace);
+					}
+				},{
 					text: 'Cancelar',
 					role: 'cancel',
 					handler: () => {
