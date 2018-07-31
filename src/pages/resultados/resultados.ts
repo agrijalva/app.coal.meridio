@@ -22,14 +22,13 @@ export class ResultadosPage {
 
 	private getEnlaces() {
 		this.enlacesGet = this.navParams.get('enlaces');
-		console.log('enlacesGet', this.enlacesGet);
 	};
 
 	public goArticulo(link) {
 		const browser = this.iab.create(link);
 
 		browser.on('loadstop').subscribe(event => {
-			browser.insertCSS({ code: "body{color: red;" });
+			//browser.insertCSS({ code: "body{color: blac;" });
 		});
 
 		//browser.close();

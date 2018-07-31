@@ -19,6 +19,12 @@ export class CategoriasPage {
     private categorias: any;
     private enlaces: any;
 
+    //Variables para la peticion de enlaces
+    public idUsuario: any = 1;
+    private filtrosData = {
+        palabraClave: ''
+    };
+
     constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController) {
     }
 
@@ -58,7 +64,14 @@ export class CategoriasPage {
         loading.present();
 
         let Params = new HttpParams();
-        Params = Params.append("busqueda", busqueda);
+        Params = Params.append( 'idUsuario', this.idUsuario );
+		Params = Params.append( 'idCategoria', '0' );
+		Params = Params.append( 'idTema', '');
+		Params = Params.append( 'titulo', busqueda);
+		Params = Params.append( 'descripcion', busqueda);
+		Params = Params.append( 'clave', '' );
+        Params = Params.append( 'idIdioma', '0' );
+        console.log( 'Params', Params );
         this._http.get(this._urlEnlaces, { params: Params }).subscribe(data => {
             this.enlaces = data
             if (this.enlaces.length > 0) {

@@ -14,7 +14,7 @@ import { ResultadosPage } from '../resultados/resultados';
 export class HomePage {
 	private url: string = 'http://coal.com.mx:1100';
 	private enlaces: any;
-	public idUsuario: any = 0;
+	public idUsuario: any = 1;
 	public categorias: any;
 	public idiomas: any;
 	public temas: any;
