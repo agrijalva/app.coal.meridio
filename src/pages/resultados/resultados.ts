@@ -28,7 +28,9 @@ export class ResultadosPage {
 		private _http: HttpClient,
 		private alertCtrl: AlertController) { }
 
-	private urlAddFav = this.url + '/api/actividad/favoritoAdd/'
+	private urlAddFav = this.url + '/api/actividad/favoritoAdd/';
+	private urlLessFav = this.url + '/api/actividad/favoritoRemove/';
+	private urlAddView = this.url + '/api/actividad/viewAdd/';
 
 	ionViewDidLoad() {
 		this.getEnlaces();
@@ -36,19 +38,9 @@ export class ResultadosPage {
 
 	private getEnlaces() {
 		this.enlacesGet = this.navParams.get('enlaces');
-		console.log('enlacesGte', this.enlacesGet);
-	};
-
-	public goArticulo(link) {
-		const browser = this.iab.create(link);
-
-		browser.on('loadstop').subscribe(event => {
-			//browser.insertCSS({ code: "body{color: blac;" });
-		});
 	};
 
 	share(categoria) {
-		console.log('catregoria', categoria);
 		const actionSheet = this.actionSheetCtrl.create({
 			title: 'Compartir',
 			buttons: [
@@ -86,31 +78,56 @@ export class ResultadosPage {
 			]
 		});
 		actionSheet.present();
-	}
+	};
 
-	starPlus(categoria) {
-		console.log('categoria', categoria);
-		console.log(this.urlAddFav);
+	public goArticulo(link) {
+		console.log( 'link', link );
 		let Params = new HttpParams
+		Params = Params.append( 'idUsuario', this.idUsuario );
+		Params = Params.append( 'idEnlace', link.idEnlace );
+
+		this._http.get( this.urlAddView, { params: Params } ).subscribe(data => {
+			if( data[0].success == 1 ){
+				const browser = this.iab.create(link.URL);
+				
+				browser.on('loadstop');//.subscribe(event => {
+				// 	browser.insertCSS({ code: "body{color: black;" });
+				// });
+			};
+		});
+	};
+
+	starPlus(categoria, index) {
+		let Params = new HttpParams;
 		Params = Params.append('idUsuario', this.idUsuario);
 		Params = Params.append('idEnlace', categoria.idEnlace);
-		this._http.get(this.urlAddFav, { params: Params } ).subscribe(data => {
-			console.log('dataAdd', data);
+		this._http.get(this.urlAddFav, { params: Params }).subscribe(data => {
 			if (data[0].success == 1) {
 				let alert = this.alertCtrl.create({
 					title: 'Añadido a favoritos',
 					buttons: ['Listo']
 				});
 				alert.present();
+				this.enlacesGet[index]['guardado'] = 1;
 			}
 		});
-		if (this.starIcon == true && this.starIconPush == false) {
-			this.starIcon = false;
-			this.starIconPush = true;
-		} else {
-			this.starIcon = true;
-			this.starIconPush = false;
-		};
+	};
+
+	starLess(categoria, index) {
+		let Params = new HttpParams;
+		Params = Params.append('idUsuario', this.idUsuario);
+		Params = Params.append('idEnlace', categoria.idEnlace);
+
+		this._http.get(this.urlLessFav, { params: Params }).subscribe(data => {
+			if( data[0].success == 1 ){
+				let alert = this.alertCtrl.create({
+					title: 'Eliminado de favoritos',
+					buttons: ['Listo']
+				});
+				alert.present();
+				this.enlacesGet[index]['guardado'] = 0;
+			};
+		});
 	};
 
 }

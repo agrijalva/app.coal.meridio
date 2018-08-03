@@ -12,7 +12,7 @@
 		<label class="titleText">Resultados</label>
 	</div>
 
-	<ion-card *ngFor="let car of enlacesGet">
+	<ion-card *ngFor="let car of enlacesGet; let i = index">
 		<ion-item>
 			<ion-avatar item-start>
 				<img src="https://www.google.com/s2/favicons?domain={{car.fuente}}" width="12">
@@ -21,7 +21,7 @@
 			<h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 		</ion-item>
 		<div class="paddingDiv">
-			<label class="labelTitle" (click)="goArticulo(car.URL)"> {{car.titulo}} </label>
+			<label class="labelTitle" (click)="goArticulo(car)"> {{car.titulo}} </label>
 			<img src="https://img.youtube.com/vi/{{car.URL.split('/').pop()}}/default.jpg">
 		</div>
 		<ion-card-content>
@@ -72,19 +72,19 @@
 		<ion-grid>
 			<ion-row>
 				<ion-col col-2>
-					<button *ngIf="starIcon" ion-button icon-start clear small (click)="starPlus(car)">
+					<button *ngIf="car.guardado == 0" ion-button icon-start clear small (click)="starPlus(car, i)">
 						<ion-icon class="iconsCards" ios="ios-star-outline" md="ios-star-outline"></ion-icon>
-						<div>{{car.star}} &nbsp; 0 </div>
+						<div>{{car.star}} </div>
 					</button>
-					<button *ngIf="starIconPush" ion-button icon-start clear small (click)="starPlus(car)">
+					<button *ngIf="car.guardado != 0" ion-button icon-start clear small (click)="starLess(car, i)">
 						<ion-icon class="iconsCards" ios="md-star" md="md-star"></ion-icon>
-						<div>{{car.star}} &nbsp; 0 </div>
+						<div>{{car.star}} </div>
 					</button>
 				</ion-col>
 				<ion-col col-2>
 					<button ion-button icon-start clear small>
 						<ion-icon class="iconsCards" ios="ios-eye-outline" md="ios-eye-outline"></ion-icon>
-						<div>{{car.view}} &nbsp; 0 </div>
+						<div>{{car.vistos}}</div>
 					</button>
 				</ion-col>
 				<ion-col col-8 text-right>
