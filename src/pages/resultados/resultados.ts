@@ -30,6 +30,7 @@ export class ResultadosPage {
 
 	private urlAddFav = this.url + '/api/actividad/favoritoAdd/';
 	private urlLessFav = this.url + '/api/actividad/favoritoRemove/';
+	private urlAddView = this.url + '/api/actividad/viewAdd/';
 
 	ionViewDidLoad() {
 		this.getEnlaces();
@@ -37,14 +38,6 @@ export class ResultadosPage {
 
 	private getEnlaces() {
 		this.enlacesGet = this.navParams.get('enlaces');
-	};
-
-	public goArticulo(link) {
-		const browser = this.iab.create(link);
-
-		browser.on('loadstop').subscribe(event => {
-			//browser.insertCSS({ code: "body{color: blac;" });
-		});
 	};
 
 	share(categoria) {
@@ -85,7 +78,24 @@ export class ResultadosPage {
 			]
 		});
 		actionSheet.present();
-	}
+	};
+
+	public goArticulo(link) {
+		console.log( 'link', link );
+		let Params = new HttpParams
+		Params = Params.append( 'idUsuario', this.idUsuario );
+		Params = Params.append( 'idEnlace', link.idEnlace );
+
+		this._http.get( this.urlAddView, { params: Params } ).subscribe(data => {
+			if( data[0].success == 1 ){
+				const browser = this.iab.create(link.URL);
+				
+				browser.on('loadstop');//.subscribe(event => {
+				// 	browser.insertCSS({ code: "body{color: black;" });
+				// });
+			};
+		});
+	};
 
 	starPlus(categoria, index) {
 		let Params = new HttpParams;
