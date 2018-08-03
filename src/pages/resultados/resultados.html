@@ -12,7 +12,7 @@
 		<label class="titleText">Resultados</label>
 	</div>
 
-	<ion-card *ngFor="let car of enlacesGet">
+	<ion-card *ngFor="let car of enlacesGet; let i = index">
 		<ion-item>
 			<ion-avatar item-start>
 				<img src="https://www.google.com/s2/favicons?domain={{car.fuente}}" width="12">
@@ -72,11 +72,11 @@
 		<ion-grid>
 			<ion-row>
 				<ion-col col-2>
-					<button *ngIf="starIcon" ion-button icon-start clear small (click)="starPlus(car)">
+					<button *ngIf="car.guardado == 0" ion-button icon-start clear small (click)="starPlus(car, i)">
 						<ion-icon class="iconsCards" ios="ios-star-outline" md="ios-star-outline"></ion-icon>
 						<div>{{car.star}} &nbsp; 0 </div>
 					</button>
-					<button *ngIf="starIconPush" ion-button icon-start clear small (click)="starPlus(car)">
+					<button *ngIf="car.guardado != 0" ion-button icon-start clear small (click)="starLess(car, i)">
 						<ion-icon class="iconsCards" ios="md-star" md="md-star"></ion-icon>
 						<div>{{car.star}} &nbsp; 0 </div>
 					</button>
