@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpClient, HttpParams, } from '@angular/common/http';
 
 @IonicPage()
@@ -19,7 +20,9 @@ export class SitiosfavPage {
 		public navCtrl: NavController, 
 		public navParams: NavParams,
 		private _http: HttpClient,
-		private alertCtrl: AlertController) {
+		private alertCtrl: AlertController,
+		private socialSharing: SocialSharing,
+		public actionSheetCtrl: ActionSheetController) {
 	}
 
 	private urlGetFav = this.url + '/api/actividad/favoritoUsuario/';
@@ -56,6 +59,46 @@ export class SitiosfavPage {
 				this.favoritos[index]['guardado'] = 0;
 			};
 		});
+	};
+
+	share(categoria) {
+		const actionSheet = this.actionSheetCtrl.create({
+			title: 'Compartir',
+			buttons: [
+				{
+					text: 'Facebook',
+					icon: 'logo-facebook',
+					handler: () => {
+						this.socialSharing.shareViaFacebook('Este contenido te puede interesar... ' + categoria.titulo, null, this.urlShare + categoria.idEnlace);
+					}
+				}, {
+					text: 'WhatsApp',
+					icon: 'logo-whatsapp',
+					handler: () => {
+						this.socialSharing.shareViaWhatsApp('Este contenido te puede interesar... ' + categoria.titulo, null, this.urlShare + categoria.idEnlace);
+					}
+				}, {
+					text: 'Twitter',
+					icon: 'logo-twitter',
+					handler: () => {
+						this.socialSharing.shareViaTwitter('Este contenido te puede interesar... ' + categoria.titulo, null, this.urlShare + categoria.idEnlace);
+					}
+				}, {
+					text: 'Compartir',
+					icon: 'md-share',
+					handler: () => {
+						this.socialSharing.share('Este contenido te puede interesar... ' + categoria.titulo, null, null, this.urlShare + categoria.idEnlace);
+					}
+				}, {
+					text: 'Cancelar',
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				}
+			]
+		});
+		actionSheet.present();
 	};
 
 }
