@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, ToastController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpClient, HttpParams, } from '@angular/common/http';
@@ -26,7 +26,7 @@ export class ResultadosPage {
 		public actionSheetCtrl: ActionSheetController,
 		private socialSharing: SocialSharing,
 		private _http: HttpClient,
-		private alertCtrl: AlertController) { }
+		public toastCtrl: ToastController) { }
 
 	private urlAddFav = this.url + '/api/actividad/favoritoAdd/';
 	private urlLessFav = this.url + '/api/actividad/favoritoRemove/';
@@ -103,11 +103,11 @@ export class ResultadosPage {
 		Params = Params.append('idEnlace', categoria.idEnlace);
 		this._http.get(this.urlAddFav, { params: Params }).subscribe(data => {
 			if (data[0].success == 1) {
-				let alert = this.alertCtrl.create({
-					title: 'Añadido a favoritos',
-					buttons: ['Listo']
+				const toast = this.toastCtrl.create({
+					message: 'Se agrego de favoritos',
+					duration: 2000
 				});
-				alert.present();
+				toast.present();
 				this.enlacesGet[index]['guardado'] = 1;
 			}
 		});

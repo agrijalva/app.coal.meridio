@@ -16,9 +16,9 @@
 		<br>
 		<label> No has añadido favoritos </label>
 	</div>
-
+	
 	<div *ngIf="showDiv != 0">
-		<ion-card *ngFor="let car of favoritos; let i = index">
+		<ion-card *ngFor="let car of favoritos; let i = index; trackBy: trackByFav">
 			<ion-item>
 				<ion-avatar item-start>
 					<img src="https://www.google.com/s2/favicons?domain={{car.fuente}}" width="12">
