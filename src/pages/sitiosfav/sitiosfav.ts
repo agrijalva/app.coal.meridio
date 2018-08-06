@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, ToastController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpClient, HttpParams, } from '@angular/common/http';
 
@@ -16,12 +16,12 @@ export class SitiosfavPage {
 	public idUsuario: any = 1;
 	public showDiv: number = 0;
 	public favoritos: any;
-	
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private _http: HttpClient,
-		private alertCtrl: AlertController,
+		public toastCtrl: ToastController,
 		private socialSharing: SocialSharing,
 		public actionSheetCtrl: ActionSheetController) {
 	}
@@ -47,7 +47,7 @@ export class SitiosfavPage {
 
 	trackByFav(index) {
 		return index;
-	  }
+	}
 
 	starLess(categoria, index) {
 		let Params = new HttpParams;
@@ -56,11 +56,11 @@ export class SitiosfavPage {
 
 		this._http.get(this.urlLessFav, { params: Params }).subscribe(data => {
 			if (data[0].success == 1) {
-				let alert = this.alertCtrl.create({
-					title: 'Eliminado de favoritos',
-					buttons: ['Listo']
+				const toast = this.toastCtrl.create({
+					message: 'Se elimino de favoritos',
+					duration: 2000
 				});
-				alert.present();
+				toast.present();
 				this.getFavoritos();
 			};
 		});
