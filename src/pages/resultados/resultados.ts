@@ -120,11 +120,11 @@ export class ResultadosPage {
 
 		this._http.get(this.urlLessFav, { params: Params }).subscribe(data => {
 			if( data[0].success == 1 ){
-				let alert = this.alertCtrl.create({
-					title: 'Eliminado de favoritos',
-					buttons: ['Listo']
+				const toast = this.toastCtrl.create({
+					message: 'Se elimino de favoritos',
+					duration: 2000
 				});
-				alert.present();
+				toast.present();
 				this.enlacesGet[index]['guardado'] = 0;
 			};
 		});

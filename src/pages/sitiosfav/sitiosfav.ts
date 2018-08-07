@@ -47,7 +47,7 @@ export class SitiosfavPage {
 
 	trackByFav(index) {
 		return index;
-	}
+	};
 
 	starLess(categoria, index) {
 		let Params = new HttpParams;
@@ -106,4 +106,4 @@ export class SitiosfavPage {
 		actionSheet.present();
 	};
 
-}
+};
