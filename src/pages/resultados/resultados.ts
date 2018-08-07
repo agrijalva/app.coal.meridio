@@ -12,8 +12,8 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 export class ResultadosPage {
 
 	public enlacesGet: any;
-	//private url: string = 'http://coal.com.mx:1100';
-	private url: string = 'http://localhost:1100';
+	private url: string = 'http://coal.com.mx:1100';
+	// private url: string = 'http://localhost:1100';
 	private urlShare: any = 'http://coal.com.mx:1100/#/link?';
 	public starIcon: boolean = true;
 	public starIconPush: boolean = false;
