@@ -17,10 +17,10 @@
 	<div class="divForm">
 		<form (ngSubmit)="getFilterData()">
 			<ion-item>
-				<ion-label>Categoria</ion-label>
-				<ion-select name="categoria" [(ngModel)]="categoria" (ngModelChange)="getTema(categoria)">
+				<ion-label>Materia</ion-label>
+				<ion-select name="materia" [(ngModel)]="materia" (ngModelChange)="getTema(materia)">
 					<ion-option value="0">Todos</ion-option>
-					<ion-option *ngFor="let cat of categorias" value="{{cat.idCategoria}}">{{cat.categoria}}</ion-option>
+					<ion-option *ngFor="let cat of materias" value="{{cat.idMateria}}">{{cat.materia}}</ion-option>
 				</ion-select>
 			</ion-item>
 			<br>
@@ -30,6 +30,13 @@
 				<ion-select name="tema" [(ngModel)]="tema">
 					<ion-option value="0">Todos</ion-option>
 					<ion-option *ngFor="let tema of temas" value="{{tema.idTema}}">{{tema.tema}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label>Categoria</ion-label>
+				<ion-select name="categoria" [(ngModel)]="categoria" (ngModelChange)="getTema(categoria)">
+					<ion-option value="0">Todos</ion-option>
+					<ion-option *ngFor="let cat of categorias" value="{{cat.idCategoria}}">{{cat.categoria}}</ion-option>
 				</ion-select>
 			</ion-item>
 			<ion-item>
