@@ -12,8 +12,8 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 export class ResultadosPage {
 
 	public enlacesGet: any;
-	//private url: string = 'http://coal.com.mx:1100';
-	private url: string = 'http://localhost:1100';
+	private url: string = 'http://coal.com.mx:1100';
+	// private url: string = 'http://localhost:1100';
 	private urlShare: any = 'http://coal.com.mx:1100/#/link?';
 	public starIcon: boolean = true;
 	public starIconPush: boolean = false;
@@ -80,14 +80,14 @@ export class ResultadosPage {
 		actionSheet.present();
 	};
 
-	public goArticulo(link) {
-		console.log( 'link', link );
+	public goArticulo(link, index) {
 		let Params = new HttpParams
 		Params = Params.append( 'idUsuario', this.idUsuario );
 		Params = Params.append( 'idEnlace', link.idEnlace );
 
 		this._http.get( this.urlAddView, { params: Params } ).subscribe(data => {
 			if( data[0].success == 1 ){
+				this.enlacesGet[index]['vistos'] = this.enlacesGet[index]['vistos'] + 1;
 				const browser = this.iab.create(link.URL);
 				
 				browser.on('loadstop');//.subscribe(event => {

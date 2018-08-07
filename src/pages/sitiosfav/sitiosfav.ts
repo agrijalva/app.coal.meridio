@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ToastController } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpClient, HttpParams, } from '@angular/common/http';
 
@@ -10,8 +11,8 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 })
 export class SitiosfavPage {
 
-	//private url: string = 'http://coal.com.mx:1100';
-	private url: string = 'http://localhost:1100';
+	private url: string = 'http://coal.com.mx:1100';
+	// private url: string = 'http://localhost:1100';
 	private urlShare: any = 'http://coal.com.mx:1100/#/link?';
 	public idUsuario: any = 1;
 	public showDiv: number = 0;
@@ -22,12 +23,14 @@ export class SitiosfavPage {
 		public navParams: NavParams,
 		private _http: HttpClient,
 		public toastCtrl: ToastController,
+		private iab: InAppBrowser,
 		private socialSharing: SocialSharing,
 		public actionSheetCtrl: ActionSheetController) {
 	}
 
 	private urlGetFav = this.url + '/api/actividad/favoritoUsuario/';
 	private urlLessFav = this.url + '/api/actividad/favoritoRemove/';
+	private urlAddView = this.url + '/api/actividad/viewAdd/';
 
 	ionViewDidLoad() {
 		this.getFavoritos();
@@ -42,6 +45,22 @@ export class SitiosfavPage {
 			if (this.favoritos.length > 0) {
 				this.showDiv = 1;
 			}
+		});
+	};
+
+	public goArticulo(link, index) {
+		let Params = new HttpParams
+		Params = Params.append( 'idUsuario', this.idUsuario );
+		Params = Params.append( 'idEnlace', link.idEnlace );
+		console.log( 'params', Params );
+		this._http.get( this.urlAddView, { params: Params } ).subscribe(data => {
+			console.log( 'data', data );
+			if( data[0].success == 1 ){
+				this.favoritos[index]['vistos'] = this.favoritos[index]['vistos'] + 1;
+				const browser = this.iab.create(link.URL);
+				
+				browser.on('loadstop');
+			};
 		});
 	};
 

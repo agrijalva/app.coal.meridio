@@ -12,17 +12,19 @@ import { ResultadosPage } from '../resultados/resultados';
 	templateUrl: 'home.html'
 })
 export class HomePage {
-	//private url: string = 'http://coal.com.mx:1100';
-	private url: string = 'http://localhost:1100';
+	private url: string = 'http://coal.com.mx:1100';
+	// private url: string = 'http://localhost:1100';
 	private enlaces: any;
 	public idUsuario: any = 1;
 	public categorias: any;
 	public idiomas: any;
 	public temas: any;
+	public materias: any;
 
 	public categoria: any = 0;
 	public tema: any = 0;
 	public idioma: any = 0;
+	public materia: any = 0;
 
 	private filtrosData = {
 		descripcion: '',
@@ -30,17 +32,24 @@ export class HomePage {
 		palabraClave: ''
 	};
 
-	constructor(public navCtrl: NavController, private _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private menu: MenuController) { }
+	constructor(
+		public navCtrl: NavController, 
+		private _http: HttpClient, 
+		public loadingCtrl: LoadingController, 
+		private alertCtrl: AlertController, 
+		private menu: MenuController
+	) { }
 
 	private _urlCategorias = this.url + "/api/categoria/categorias";
 	private _urlIdiomas = this.url + "/api/idioma/idiomas";
-	private _urlTemas = this.url + "/api/tema/temaByIdCat";
-	private _urlEnlaces = this.url + "/api/enlaces/busquedaEnlaces"
+	private _urlTemas = this.url + "/api/tema/temaByIdMat";
+	private _urlEnlaces = this.url + "/api/enlaces/busquedaEnlaces";
+	private _urlMaterias = this.url + "/api/materia/materias";
 
 	ionViewDidLoad() {
+		this.getMaterias();
 		this.getCategorias();
 		this.getIdiomas();
-		
 		this.menu.swipeEnable(true);
 	};
 
@@ -55,6 +64,7 @@ export class HomePage {
 		Params = Params.append('idUsuario', this.idUsuario);
 		Params = Params.append('idCategoria', this.categoria);
 		Params = Params.append('idTema', this.tema);
+		Params = Params.append('idMateria', this.materia);
 		Params = Params.append('titulo', this.filtrosData.titulo);
 		Params = Params.append('descripcion', this.filtrosData.descripcion);
 		Params = Params.append('clave', this.filtrosData.palabraClave);
@@ -76,18 +86,25 @@ export class HomePage {
 		});
 	};
 
+	getMaterias() {
+		let Params = new HttpParams();
+		this._http.get(this._urlMaterias, { params: Params }).subscribe(data => {
+			this.materias = data;
+		});
+	};
+
+	getTema(idMateria) {
+		let Params = new HttpParams();
+		Params = Params.append('idMateria', idMateria);
+		this._http.get(this._urlTemas, { params: Params }).subscribe(data => {
+			this.temas = data;
+		});
+	};
+
 	getCategorias() {
 		let Params = new HttpParams();
 		this._http.get(this._urlCategorias, { params: Params }).subscribe(data => {
 			this.categorias = data;
-		});
-	};
-
-	getTema(idCategoria) {
-		let Params = new HttpParams();
-		Params = Params.append('idCategoria', idCategoria);
-		this._http.get(this._urlTemas, { params: Params }).subscribe(data => {
-			this.temas = data;
 		});
 	};
 
