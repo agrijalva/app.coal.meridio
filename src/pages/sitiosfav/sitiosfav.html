@@ -26,12 +26,12 @@
 				<p>{{car.fuente}}</p>
 				<h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 			</ion-item>
-			<div class="paddingDiv">
-				<label class="labelTitle" (click)="goArticulo(car.URL)"> {{car.titulo}} </label>
+			<div class="paddingDiv" (click)="goArticulo(car, i)">
+				<label class="labelTitle"> {{car.titulo}} </label>
 				<img src="https://img.youtube.com/vi/{{car.URL.split('/').pop()}}/default.jpg">
 			</div>
 			<ion-card-content>
-				<p>{{car.descripcion}} </p>
+				<p (click)="goArticulo(car, i)">{{car.descripcion}} </p>
 				<ion-grid>
 					<ion-row>
 						<strong>
