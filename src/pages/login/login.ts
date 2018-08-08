@@ -81,8 +81,10 @@ export class LoginPage {
 					alert.present();
 				}else{
 					loading.dismiss();
+					//console.log( data );
 					this.navCtrl.setRoot(CategoriasPage);
 					localStorage.setItem( 'login', '1' );
+					//localStorage.setItem( 'userName', data[0].nombre )
 				}
 			});
 		}

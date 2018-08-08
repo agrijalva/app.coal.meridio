@@ -22,7 +22,7 @@ export class MyApp {
 
 	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
 		this.initializeApp();
-
+		console.log( 'nombre', localStorage.getItem( 'userName' ) );
 		// used for an example of ngFor and navigation
 		this.pages = [
 			{ title: 'Conócenos', component: ConocenosPage },
