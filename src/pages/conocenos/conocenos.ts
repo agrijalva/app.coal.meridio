@@ -19,7 +19,6 @@ export class ConocenosPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConocenosPage');
   }
 
 }

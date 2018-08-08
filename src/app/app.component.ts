@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,14 +15,20 @@ import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 })
 export class MyApp {
 	@ViewChild(Nav) nav: Nav;
-
+	public usuarioNombre: any = '';
 	rootPage: any = LoginPage;
 
 	pages: Array<{ title: string, component: any }>;
 
-	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+	constructor(
+		public platform: Platform,
+		public statusBar: StatusBar,
+		public splashScreen: SplashScreen,
+		public events: Events) {
 		this.initializeApp();
-		console.log( 'nombre', localStorage.getItem( 'userName' ) );
+		events.subscribe('userName', (nombre) => {
+			this.usuarioNombre = nombre;
+		});
 		// used for an example of ngFor and navigation
 		this.pages = [
 			{ title: 'Conócenos', component: ConocenosPage },
@@ -33,7 +39,7 @@ export class MyApp {
 			{ title: 'Cerrar Sesion', component: LoginPage }
 		];
 
-	}
+	};
 
 	initializeApp() {
 		this.platform.ready().then(() => {
@@ -46,13 +52,11 @@ export class MyApp {
 
 	openPage(page) {
 		if (page.title == 'Cerrar Sesion') {
-			localStorage.removeItem( 'login' );
-			localStorage.setItem( 'login', '0' );
+			localStorage.removeItem('login');
+			localStorage.setItem('login', '0');
 			this.nav.push(page.component);
-			console.log('Cierre de sesion')
-		}else{
+		} else {
 			this.nav.push(page.component);
-			console.log( 'Algo normal' );
 		}
 	}
 }

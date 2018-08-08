@@ -52,9 +52,7 @@ export class SitiosfavPage {
 		let Params = new HttpParams
 		Params = Params.append( 'idUsuario', this.idUsuario );
 		Params = Params.append( 'idEnlace', link.idEnlace );
-		console.log( 'params', Params );
 		this._http.get( this.urlAddView, { params: Params } ).subscribe(data => {
-			console.log( 'data', data );
 			if( data[0].success == 1 ){
 				this.favoritos[index]['vistos'] = this.favoritos[index]['vistos'] + 1;
 				const browser = this.iab.create(link.URL);

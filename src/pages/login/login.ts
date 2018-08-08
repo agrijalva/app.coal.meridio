@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController } from 'ionic-angular';
+import { 
+	IonicPage, 
+	NavController, 
+	NavParams, 
+	MenuController, 
+	AlertController, 
+	LoadingController,
+	Events } from 'ionic-angular';
 import { HttpClient, HttpParams, } from '@angular/common/http';
 
 //Page Import
@@ -23,7 +30,8 @@ export class LoginPage {
 		private menu: MenuController,
 		private _http: HttpClient,
 		private alertCtrl: AlertController,
-		public loadingCtrl: LoadingController
+		public loadingCtrl: LoadingController,
+		public events: Events
 	) {
 	}
 
@@ -84,7 +92,7 @@ export class LoginPage {
 					//console.log( data );
 					this.navCtrl.setRoot(CategoriasPage);
 					localStorage.setItem( 'login', '1' );
-					//localStorage.setItem( 'userName', data[0].nombre )
+					this.events.publish('userName', data[0].nombre);
 				}
 			});
 		}

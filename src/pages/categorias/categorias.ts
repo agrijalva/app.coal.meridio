@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { 
+    IonicPage, 
+    NavController, 
+    NavParams, 
+    LoadingController, 
+    AlertController } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -24,7 +29,12 @@ export class CategoriasPage {
     //Variables para la peticion de enlaces
     public idUsuario: any = 1;
     
-    constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+    constructor(
+        public navCtrl: NavController, 
+        public navParams: NavParams, 
+        public _http: HttpClient, 
+        public loadingCtrl: LoadingController, 
+        private alertCtrl: AlertController) {
     }
 
     private _urlCategorias = this.url + "/api/categoria/categorias";

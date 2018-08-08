@@ -14,7 +14,6 @@ export class ArticuloPage {
 	}
 
 	ionViewDidLoad() {
-		console.log('ArticuloPage', this.link);
 	}
 
 }
