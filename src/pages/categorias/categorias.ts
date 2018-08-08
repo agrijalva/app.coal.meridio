@@ -4,7 +4,8 @@ import {
     NavController, 
     NavParams, 
     LoadingController, 
-    AlertController } from 'ionic-angular';
+    AlertController,
+    Events } from 'ionic-angular';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -34,7 +35,8 @@ export class CategoriasPage {
         public navParams: NavParams, 
         public _http: HttpClient, 
         public loadingCtrl: LoadingController, 
-        private alertCtrl: AlertController) {
+        private alertCtrl: AlertController,
+        public events: Events) {
     }
 
     private _urlCategorias = this.url + "/api/categoria/categorias";
@@ -47,7 +49,8 @@ export class CategoriasPage {
 
     login(){
 		if( localStorage.getItem( 'login' ) != '1'){
-			this.navCtrl.push(LoginPage);
+            this.navCtrl.push(LoginPage);
+            localStorage.removeItem( 'nameUser' );
 		};
 	}
 

@@ -32,21 +32,21 @@ export class LoginPage {
 		private alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
 		public events: Events
-	) {
-	}
+	) {}
 
 	private urlLogin = this.url + '/api/login/login'
 
 	ionViewDidLoad() {
 		this.checkLogin();
 		this.menu.swipeEnable(false);
-	}
+	};
 
 	checkLogin(){
 		if( localStorage.getItem( 'login' ) == '1' ){
+			this.events.publish('userName', localStorage.getItem( 'nameUser' ));
 			this.navCtrl.setRoot(CategoriasPage);
-		}
-	}
+		};
+	};
 
 	login() {
 		if (this.loginData.usuario == '' && this.loginData.pass == '') {
@@ -92,11 +92,12 @@ export class LoginPage {
 					//console.log( data );
 					this.navCtrl.setRoot(CategoriasPage);
 					localStorage.setItem( 'login', '1' );
+					localStorage.setItem( 'nameUser', data[0].nombre );
 					this.events.publish('userName', data[0].nombre);
-				}
+				};
 			});
-		}
+		};
 
-	}
+	};
 
 }

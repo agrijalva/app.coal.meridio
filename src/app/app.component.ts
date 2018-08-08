@@ -54,6 +54,7 @@ export class MyApp {
 		if (page.title == 'Cerrar Sesion') {
 			localStorage.removeItem('login');
 			localStorage.setItem('login', '0');
+			localStorage.removeItem( 'nameUser' );
 			this.nav.push(page.component);
 		} else {
 			this.nav.push(page.component);
