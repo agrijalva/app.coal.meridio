@@ -8,6 +8,7 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 import { HomePage } from '../home/home';
 import { BuscarcatPage } from '../buscarcat/buscarcat';
 import { ResultadosPage } from '../resultados/resultados';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -30,8 +31,15 @@ export class CategoriasPage {
     private _urlEnlaces = this.url + "/api/enlaces/busquedaEnlaces";
 
     ionViewDidLoad() {
+        this.login();
         this.getCategorias();
     };
+
+    login(){
+		if( localStorage.getItem( 'login' ) != '1'){
+			this.navCtrl.push(LoginPage);
+		};
+	}
 
     getCategorias() {
         let Params = new HttpParams();

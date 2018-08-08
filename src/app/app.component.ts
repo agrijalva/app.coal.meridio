@@ -11,42 +11,48 @@ import { AyudaPage } from '../pages/ayuda/ayuda';
 import { SitiosfavPage } from '../pages/sitiosfav/sitiosfav';
 
 @Component({
-  templateUrl: 'app.html'
+	templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+	@ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+	rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+	pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
+	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+		this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Conócenos',             component: ConocenosPage },
-      { title: 'Categorias',            component: CategoriasPage },
-      { title: 'Filtros',               component: HomePage },
-      { title: 'Mis sitios favoritos',  component: SitiosfavPage },
-      { title: 'Ayuda',                 component: AyudaPage },
-      { title: 'Cerra Sesion',          component: LoginPage }
-    ];
+		// used for an example of ngFor and navigation
+		this.pages = [
+			{ title: 'Conócenos', component: ConocenosPage },
+			{ title: 'Categorias', component: CategoriasPage },
+			{ title: 'Filtros', component: HomePage },
+			{ title: 'Mis sitios favoritos', component: SitiosfavPage },
+			{ title: 'Ayuda', component: AyudaPage },
+			{ title: 'Cerrar Sesion', component: LoginPage }
+		];
 
-  }
+	}
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
+	initializeApp() {
+		this.platform.ready().then(() => {
+			// Okay, so the platform is ready and our plugins are available.
+			// Here you can do any higher level native things you might need.
+			this.statusBar.styleDefault();
+			this.splashScreen.hide();
+		});
+	}
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.push(page.component);
-  }
+	openPage(page) {
+		if (page.title == 'Cerrar Sesion') {
+			localStorage.removeItem( 'login' );
+			localStorage.setItem( 'login', '0' );
+			this.nav.push(page.component);
+			console.log('Cierre de sesion')
+		}else{
+			this.nav.push(page.component);
+			console.log( 'Algo normal' );
+		}
+	}
 }

@@ -14,17 +14,15 @@
                         <ion-item class="ionInput">
                             <ion-label class="fontlabel">
                                 <ion-icon ios="md-contact" md="md-contact"></ion-icon>
-                                &nbsp;Matrúcula o Nómina
                             </ion-label>
-                            <ion-input type="text" name="usuario" [(ngModel)]="loginData.usuario"></ion-input>
+                            <ion-input type="text" name="usuario" placeholder="Matrúcula o Nómina" [(ngModel)]="loginData.usuario"></ion-input>
                         </ion-item>
 
                         <ion-item class="ionInput">
                             <ion-label class="fontlabel">
                                 <ion-icon ios="ios-lock" md="ios-lock"></ion-icon>
-                                &nbsp;Contraseña
                             </ion-label>
-                            <ion-input type="password" name="pass" [(ngModel)]="loginData.pass"></ion-input>
+                            <ion-input type="password" name="pass" placeholder="Contraseña" [(ngModel)]="loginData.pass"></ion-input>
                         </ion-item>
                         <button ion-button class="submit-btn" full type="submit">Iniciar Sesión</button>
                     </ion-list>
