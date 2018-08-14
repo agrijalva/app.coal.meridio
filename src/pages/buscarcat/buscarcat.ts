@@ -23,10 +23,10 @@ export class BuscarcatPage {
 	private enlaces: any;
 	public imagen: any;
 	constructor(
-		public navCtrl: NavController, 
-		public navParams: NavParams, 
-		public _http: HttpClient, 
-		public loadingCtrl: LoadingController, 
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public _http: HttpClient,
+		public loadingCtrl: LoadingController,
 		private alertCtrl: AlertController,
 		private screenOrientation: ScreenOrientation) {
 	}
@@ -56,7 +56,7 @@ export class BuscarcatPage {
 		Params = Params.append('clave', '');
 		Params = Params.append('idIdioma', '0');
 		this._http.get(this._urlCategoriasByIdCat, { params: Params }).subscribe(data => {
-			this.enlaces = data
+			this.enlaces = data;
 			if (this.enlaces.length > 0) {
 				loading.dismiss();
 				this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
@@ -70,6 +70,39 @@ export class BuscarcatPage {
 				alert.present();
 			};
 		});
-	}
+	};
 
-}
+	searchAll() {
+		let loading = this.loadingCtrl.create({
+			content: '',
+			spinner: 'crescent'
+		});
+
+		loading.present();
+		let Params = new HttpParams();
+		Params = Params.append('idUsuario', this.idUsuario);
+		Params = Params.append('idCategoria', this.categorias.idCategoria);
+		Params = Params.append('idTema', '0');
+		Params = Params.append('titulo', '');
+		Params = Params.append('descripcion', '');
+		Params = Params.append('clave', '');
+		Params = Params.append('idIdioma', '0');
+		this._http.get(this._urlCategoriasByIdCat, { params: Params }).subscribe(data => {
+			this.enlaces = data;
+			if (this.enlaces.length > 0) {
+				loading.dismiss();
+				this.navCtrl.push(ResultadosPage, { enlaces: this.enlaces });
+			} else {
+				loading.dismiss();
+				let alert = this.alertCtrl.create({
+					title: 'Resultados',
+					subTitle: 'No se encontraron enlaces.',
+					buttons: ['Cerrar']
+				});
+				alert.present();
+			};
+		});
+	};
+
+
+};
