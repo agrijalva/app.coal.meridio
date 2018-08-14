@@ -8,6 +8,7 @@ import {
 	LoadingController,
 	Events } from 'ionic-angular';
 import { HttpClient, HttpParams, } from '@angular/common/http';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 //Page Import
 import { CategoriasPage } from '../categorias/categorias'
@@ -31,7 +32,8 @@ export class LoginPage {
 		private _http: HttpClient,
 		private alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
-		public events: Events
+		public events: Events,
+		private screenOrientation: ScreenOrientation
 	) {}
 
 	private urlLogin = this.url + '/api/login/login'
@@ -39,6 +41,8 @@ export class LoginPage {
 	ionViewDidLoad() {
 		this.checkLogin();
 		this.menu.swipeEnable(false);
+		console.log(this.screenOrientation.type);
+		this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 	};
 
 	checkLogin(){

@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -57,6 +58,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 		StatusBar,
 		InAppBrowser,
 		SocialSharing,
+		ScreenOrientation,
 		SplashScreen,
 		{ provide: ErrorHandler, useClass: IonicErrorHandler }
 	]
