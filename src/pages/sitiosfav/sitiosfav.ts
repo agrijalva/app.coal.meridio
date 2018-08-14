@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController, ToastContro
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpClient, HttpParams, } from '@angular/common/http';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage()
 @Component({
@@ -25,7 +26,9 @@ export class SitiosfavPage {
 		public toastCtrl: ToastController,
 		private iab: InAppBrowser,
 		private socialSharing: SocialSharing,
-		public actionSheetCtrl: ActionSheetController) {
+		public actionSheetCtrl: ActionSheetController,
+		private screenOrientation: ScreenOrientation
+	) {
 	}
 
 	private urlGetFav = this.url + '/api/actividad/favoritoUsuario/';
@@ -33,6 +36,7 @@ export class SitiosfavPage {
 	private urlAddView = this.url + '/api/actividad/viewAdd/';
 
 	ionViewDidLoad() {
+		this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 		this.getFavoritos();
 	};
 

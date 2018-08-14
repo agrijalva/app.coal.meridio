@@ -4,6 +4,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { HttpClient, HttpParams, } from '@angular/common/http';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { ResultadosPage } from '../resultados/resultados';
 
@@ -21,12 +22,19 @@ export class BuscarcatPage {
 	public categorias: any;
 	private enlaces: any;
 	public imagen: any;
-	constructor(public navCtrl: NavController, public navParams: NavParams, public _http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+	constructor(
+		public navCtrl: NavController, 
+		public navParams: NavParams, 
+		public _http: HttpClient, 
+		public loadingCtrl: LoadingController, 
+		private alertCtrl: AlertController,
+		private screenOrientation: ScreenOrientation) {
 	}
 
 	private _urlCategoriasByIdCat = this.url + "/api/enlaces/busquedaEnlaces";
 
 	ionViewDidLoad() {
+		this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 		this.categorias = this.navParams.get('sendCat');
 		this.imagen = this.categorias.imagen;
 		this.subTitle = this.categorias.categoria;
