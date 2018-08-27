@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController, ToastContro
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpClient, HttpParams, } from '@angular/common/http';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage()
 @Component({
@@ -26,13 +27,16 @@ export class ResultadosPage {
 		public actionSheetCtrl: ActionSheetController,
 		private socialSharing: SocialSharing,
 		private _http: HttpClient,
-		public toastCtrl: ToastController) { }
+		public toastCtrl: ToastController,
+		private screenOrientation: ScreenOrientation
+	) { }
 
 	private urlAddFav = this.url + '/api/actividad/favoritoAdd/';
 	private urlLessFav = this.url + '/api/actividad/favoritoRemove/';
 	private urlAddView = this.url + '/api/actividad/viewAdd/';
 
 	ionViewDidLoad() {
+		this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 		this.getEnlaces();
 	};
 

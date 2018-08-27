@@ -1,24 +1,22 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ConocenosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @IonicPage()
 @Component({
-  selector: 'page-conocenos',
-  templateUrl: 'conocenos.html',
+	selector: 'page-conocenos',
+	templateUrl: 'conocenos.html',
 })
 export class ConocenosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		private screenOrientation: ScreenOrientation) {
+	}
 
-  ionViewDidLoad() {
-  }
+	ionViewDidLoad() {
+		this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+	}
 
 }

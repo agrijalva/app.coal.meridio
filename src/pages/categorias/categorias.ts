@@ -10,6 +10,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { HttpClient, HttpParams, } from '@angular/common/http';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { HomePage } from '../home/home';
 import { BuscarcatPage } from '../buscarcat/buscarcat';
@@ -36,13 +37,15 @@ export class CategoriasPage {
         public _http: HttpClient, 
         public loadingCtrl: LoadingController, 
         private alertCtrl: AlertController,
-        public events: Events) {
+        public events: Events,
+        private screenOrientation: ScreenOrientation) {
     }
 
     private _urlCategorias = this.url + "/api/categoria/categorias";
     private _urlEnlaces = this.url + "/api/enlaces/busquedaEnlaces";
 
     ionViewDidLoad() {
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
         this.login();
         this.getCategorias();
     };

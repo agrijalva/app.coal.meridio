@@ -4,6 +4,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { HttpClient, HttpParams, } from '@angular/common/http';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { ResultadosPage } from '../resultados/resultados';
 
@@ -37,7 +38,8 @@ export class HomePage {
 		private _http: HttpClient, 
 		public loadingCtrl: LoadingController, 
 		private alertCtrl: AlertController, 
-		private menu: MenuController
+		private menu: MenuController,
+		private screenOrientation: ScreenOrientation
 	) { }
 
 	private _urlCategorias = this.url + "/api/categoria/categorias";
@@ -47,6 +49,7 @@ export class HomePage {
 	private _urlMaterias = this.url + "/api/materia/materias";
 
 	ionViewDidLoad() {
+		this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 		this.getMaterias();
 		this.getCategorias();
 		this.getIdiomas();
