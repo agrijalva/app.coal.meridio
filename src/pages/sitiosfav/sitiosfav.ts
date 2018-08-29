@@ -12,7 +12,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 })
 export class SitiosfavPage {
 
-	private url: string = 'http://coal.com.mx:1100';
+	//private url: string = 'http://coal.com.mx:1100';
+	private url: string = 'http://novus.cem.itesm.mx:1100';
 	// private url: string = 'http://localhost:1100';
 	private urlShare: any = 'http://coal.com.mx:1100/#/link?';
 	public idUsuario: any = 1;

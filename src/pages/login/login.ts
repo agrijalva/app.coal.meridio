@@ -19,7 +19,8 @@ import { CategoriasPage } from '../categorias/categorias'
 	templateUrl: 'login.html',
 })
 export class LoginPage {
-	private url: string = 'http://coal.com.mx:1100';
+	//private url: string = 'http://coal.com.mx:1100';
+	private url: string = 'http://novus.cem.itesm.mx:1100';
 	public loginData = {
 		usuario: '',
 		pass: ''
