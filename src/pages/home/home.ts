@@ -13,8 +13,8 @@ import { ResultadosPage } from '../resultados/resultados';
 	templateUrl: 'home.html'
 })
 export class HomePage {
-	//private url: string = 'http://coal.com.mx:1100';
-	private url: string = 'http://novus.cem.itesm.mx:1100';
+	private url: string = 'http://coal.com.mx:1100';
+	// private url: string = 'http://novus.cem.itesm.mx:1100';
 	// private url: string = 'http://localhost:1100';
 	private enlaces: any;
 	public idUsuario: any = 1;
