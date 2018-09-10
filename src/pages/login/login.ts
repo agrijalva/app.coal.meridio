@@ -21,6 +21,7 @@ import { CategoriasPage } from '../categorias/categorias'
 export class LoginPage {
 	//private url: string = 'http://coal.com.mx:1100';
 	private url: string = 'http://novus.cem.itesm.mx:1100';
+	// private url: string = 'http://localhost:1100';
 	public loginData = {
 		usuario: '',
 		pass: ''
@@ -42,7 +43,6 @@ export class LoginPage {
 	ionViewDidLoad() {
 		this.checkLogin();
 		this.menu.swipeEnable(false);
-		console.log(this.screenOrientation.type);
 		this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 	};
 
@@ -84,7 +84,13 @@ export class LoginPage {
 					content: '',
 					spinner: 'crescent'
 				});
-				if (data[0].success == 0) {
+				if (data[0].success == 1) {
+					loading.dismiss();
+					this.navCtrl.setRoot(CategoriasPage);
+					localStorage.setItem( 'login', '1' );
+					localStorage.setItem( 'nameUser', data[0].nombre );
+					this.events.publish('userName', data[0].nombre);
+				}else{
 					loading.dismiss();
 					let alert = this.alertCtrl.create({
 						title: 'Merídio',
@@ -92,13 +98,6 @@ export class LoginPage {
 						buttons: ['Aceptar']
 					});
 					alert.present();
-				}else{
-					loading.dismiss();
-					//console.log( data );
-					this.navCtrl.setRoot(CategoriasPage);
-					localStorage.setItem( 'login', '1' );
-					localStorage.setItem( 'nameUser', data[0].nombre );
-					this.events.publish('userName', data[0].nombre);
 				};
 			});
 		};
