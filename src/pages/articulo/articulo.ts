@@ -8,7 +8,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 	templateUrl: 'articulo.html',
 })
 export class ArticuloPage {
-	private link: SafeResourceUrl = '';
+	public link: SafeResourceUrl = '';
 	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
 		this.link = this.sanitizer.bypassSecurityTrustResourceUrl(this.navParams.get('link'));
 	}
