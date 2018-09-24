@@ -23,8 +23,8 @@ import { LoginPage } from '../login/login';
     templateUrl: 'categorias.html',
 })
 export class CategoriasPage {
-    private url: string = 'http://coal.com.mx:1100';
-	// private url: string = 'http://novus.cem.itesm.mx:1100';
+    // private url: string = 'http://coal.com.mx:1100';
+	private url: string = 'http://prenovus.cem.itesm.mx:1100';
 	// private url: string = 'http://localhost:1100';
     private categorias: any;
     private enlaces: any;
